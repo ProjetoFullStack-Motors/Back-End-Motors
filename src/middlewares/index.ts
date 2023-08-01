@@ -1,8 +1,7 @@
-import shared from "./shared"
-
+import shared from "./shared";
 
 const middlewares = {
-    ...shared,
-}
+	...shared,
+};
 
-export default middlewares
+export default middlewares;
