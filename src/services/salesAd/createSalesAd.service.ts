@@ -1,5 +1,18 @@
-import { TSalesAdRequest, TSalesAdResponse } from "../../interfaces/salesAd.interface";
+import { SalesAd } from "../../entities/salesAd.entity";
+import {
+    TSalesAdRequest,
+    TSalesAdResponse,
+} from "../../interfaces/salesAd.interface";
+import schemas from "../../schemas";
 
-export const create = async (salesAdData: TSalesAdRequest): Promise<TSalesAdResponse | void> => {
-    
+import repositories from "../../utils";
+
+export const createSalesAdService = async (
+    salesAdData: TSalesAdRequest
+): Promise<SalesAd> => {
+    const sales: SalesAd = repositories.salesAdRepo.create(salesAdData);
+
+    await repositories.salesAdRepo.save(sales);
+
+    return sales;
 };

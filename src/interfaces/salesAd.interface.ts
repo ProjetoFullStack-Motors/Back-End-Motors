@@ -14,9 +14,9 @@ type TSalesImagesResponse = z.infer<typeof schemas.salesAd.imagesResponse>;
 type TSalesImagesRequest = z.infer<typeof schemas.salesAd.imagesRequest>;
 
 export {
-	TSalesAdResponse,
-	TSalesAdRequest,
-	TSalesAdUpdate,
-	TSalesImagesResponse,
-	TSalesImagesRequest
+    TSalesAdResponse,
+    TSalesAdRequest,
+    TSalesAdUpdate,
+    TSalesImagesResponse,
+    TSalesImagesRequest,
 };
