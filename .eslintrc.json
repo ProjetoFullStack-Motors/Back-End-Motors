@@ -31,6 +31,6 @@
             "always"
         ],
         "no-mixed-spaces-and-tabs": "off",
-        "linebreak-style": "off",
+        "linebreak-style": "off"
     }
 }
