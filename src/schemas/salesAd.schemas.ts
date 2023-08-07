@@ -11,25 +11,36 @@ const response = z.object({
 	price: z.number(),
 	color: z.string(),
 	description: z.string(),
-	status: z.boolean(),
+	status: z.boolean().default(true),
 	createdAt: z.string(),
 });
 
-const request = response.omit({ id: true, createdAt: true });
+const request = response.omit({ id: true, createdAt: true, isGoodPrice: true });
 
 const responseArray = response.array();
+
+const update = z.object({
+	price: z.number(),
+	color: z.string(),
+	description: z.string(),
+	mileage: z.number(),
+	status: z.boolean(),
+});
 
 const imagesResponse = z.object({
 	id: z.string(),
 	imageUrl: z.string(),
+	principal: z.boolean(),
+	createdAt: z.string(),
 });
 
-const imagesRequest = imagesResponse.omit({ id: true });
+const imagesRequest = imagesResponse.omit({ id: true, 	createdAt: true });
 
 const salesAd = {
 	response,
-	request,
 	responseArray,
+	request,
+	update,
 	imagesResponse,
 	imagesRequest
 };
