@@ -19,10 +19,19 @@ const request = response.omit({ id: true, createdAt: true });
 
 const responseArray = response.array();
 
+const imagesResponse = z.object({
+	id: z.string(),
+	imageUrl: z.string(),
+});
+
+const imagesRequest = imagesResponse.omit({ id: true });
+
 const salesAd = {
 	response,
 	request,
-	responseArray
+	responseArray,
+	imagesResponse,
+	imagesRequest
 };
 
 export default salesAd;
