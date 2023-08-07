@@ -1,0 +1,199 @@
+_type: export
+__export_format: 4
+__export_date: 2023-08-07T15:36:31.809Z
+__export_source: insomnia.desktop.app:v2023.4.0
+resources:
+  - _id: req_308c4288d19240408b23d06e4a3ed0a0
+    parentId: fld_ba2c03c0be574e2e982b428e3dcde6a3
+    modified: 1691419651893
+    created: 1691419595379
+    url: "{{ _.baseUrl }}/salesAd"
+    name: Create
+    description: ""
+    method: POST
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1691256030860.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_ba2c03c0be574e2e982b428e3dcde6a3
+    parentId: wrk_d073b16430c449008c0cd9d567cafd06
+    modified: 1691419586901
+    created: 1691419586901
+    name: SalesAd
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1691419586901
+    _type: request_group
+  - _id: wrk_d073b16430c449008c0cd9d567cafd06
+    parentId: null
+    modified: 1691422530985
+    created: 1691419579645
+    name: BackEnd-Motors
+    description: ""
+    scope: design
+    _type: workspace
+  - _id: req_b16b7459f17c400fb86936088c8161a3
+    parentId: fld_ba2c03c0be574e2e982b428e3dcde6a3
+    modified: 1691419682855
+    created: 1691419680738
+    url: "{{ _.baseUrl }}/salesAd"
+    name: Read All
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1691133363004.375
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_4cd6c63a85824911af419f4694a252a1
+    parentId: fld_ba2c03c0be574e2e982b428e3dcde6a3
+    modified: 1691419713858
+    created: 1691419712038
+    url: "{{ _.baseUrl }}/salesAd/1"
+    name: Read By Id
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1691102696040.3438
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_f21803564e3147d4b91fba812d8c2900
+    parentId: fld_ba2c03c0be574e2e982b428e3dcde6a3
+    modified: 1691419693858
+    created: 1691419687406
+    url: "{{ _.baseUrl }}/salesAd/1"
+    name: Update
+    description: ""
+    method: PATCH
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1691072029076.3125
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_d551e1c9b09847489076ae44f3b4ce1e
+    parentId: fld_ba2c03c0be574e2e982b428e3dcde6a3
+    modified: 1691419700999
+    created: 1691419699320
+    url: "{{ _.baseUrl }}/salesAd/1"
+    name: Delete
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1691041362112.2812
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_d958812ea2be4378adbce0d700559e14
+    parentId: fld_ba2c03c0be574e2e982b428e3dcde6a3
+    modified: 1691419672386
+    created: 1691419658131
+    url: "{{ _.baseUrl }}/salesAd/1/images"
+    name: Create Image
+    description: ""
+    method: POST
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1691010695148.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_8942603ee44e46a0a95989f0ff1495d7
+    parentId: fld_ba2c03c0be574e2e982b428e3dcde6a3
+    modified: 1691419725126
+    created: 1691419722917
+    url: "{{ _.baseUrl }}/salesAd/1/images"
+    name: Update Image
+    description: ""
+    method: PATCH
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1690888027292.125
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_0def234b6ef9ef3e916fddf4a2f29bd993e8b94c
+    parentId: wrk_d073b16430c449008c0cd9d567cafd06
+    modified: 1691419635735
+    created: 1691419579648
+    name: Base Environment
+    data:
+      baseUrl: http://localhost:3000
+    dataPropertyOrder:
+      "&":
+        - baseUrl
+    color: null
+    isPrivate: false
+    metaSortKey: 1691419579648
+    _type: environment
+  - _id: jar_0def234b6ef9ef3e916fddf4a2f29bd993e8b94c
+    parentId: wrk_d073b16430c449008c0cd9d567cafd06
+    modified: 1691419579649
+    created: 1691419579649
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_e07ed61d53f44f76bd3c0225e76e4fc2
+    parentId: wrk_d073b16430c449008c0cd9d567cafd06
+    modified: 1691422530984
+    created: 1691419579646
+    fileName: BackEnd-Motors
+    contents: ""
+    contentType: yaml
+    _type: api_spec
