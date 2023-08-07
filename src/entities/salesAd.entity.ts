@@ -9,7 +9,7 @@ enum Engine {
 }
 
 @Entity("salesAd")
-export class SalesAd extends BaseEntity {
+class SalesAd extends BaseEntity {
     @Column({type: "varchar", length: 255})
     	brand: string;
 
@@ -28,10 +28,10 @@ export class SalesAd extends BaseEntity {
     @Column({ type: "date"})
     	year: string | Date;
 
-    @Column({ type: "number"})
+    @Column({ type: "integer"})
     	mileage: number;
 
-    @Column({ type: "number"})
+    @Column({ type: "integer"})
     	price: number;
 
     @Column({ type: "boolean", default: true})
@@ -55,3 +55,5 @@ class SalesImages extends BaseEntity {
     @ManyToOne(() => SalesAd, (salesAd) => salesAd.salesImages)
     	salesAd: SalesAd;
 }
+
+export { SalesAd, SalesImages };
