@@ -1,8 +1,18 @@
 import { Request, Response } from "express";
 import salesAdServices from "../services/salesAd";
+import { TSalesAdRequest } from "../interfaces/salesAd.interface";
 
-const create = async (req: Request, res: Response): Promise<Response> => {
-    return await res.json("create controller");
+const createSalesAdController = async (
+    req: Request,
+    res: Response
+): Promise<Response> => {
+    const salesAdData: TSalesAdRequest = req.body;
+
+    console.log(salesAdData);
+
+    const newSalesAd = await salesAdServices.createSalesAdService(salesAdData);
+
+    return res.status(201).json(newSalesAd);
 };
 
 const readAll = async (req: Request, res: Response): Promise<Response> => {
@@ -37,7 +47,7 @@ const updateImageById = async (
 };
 
 const salesAd = {
-    create,
+    createSalesAdController,
     readAll,
     readById,
     updateById,

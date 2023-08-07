@@ -3,9 +3,9 @@ import salesAd from "./salesAd.schemas";
 import users from "./users.schemas";
 
 const schemas = {
-	addresses,
-	users,
-	salesAd
+    addresses,
+    users,
+    salesAd,
 };
 
 export default schemas;

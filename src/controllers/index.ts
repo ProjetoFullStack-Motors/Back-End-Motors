@@ -3,9 +3,9 @@ import salesAd from "./salesAd.controller";
 import users from "./users.controller";
 
 const controllers = {
-	addresses,
-	salesAd,
-	users,
+    addresses,
+    salesAd,
+    users,
 };
 
 export default controllers;
