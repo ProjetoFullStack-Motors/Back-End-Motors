@@ -30,7 +30,7 @@ const updateById = async (req: Request, res: Response): Promise<Response> => {
 const deleteById = async (req: Request, res: Response): Promise<Response> => {
     const salesAdId: string = req.params.id;
 
-    await services.salesAd.deleteById(salesAdId);
+    await salesAdServices.deleteById(salesAdId);
 
     return res.status(204).send();
 };

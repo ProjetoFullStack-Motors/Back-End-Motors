@@ -1,9 +1,5 @@
 import { SalesAd } from "../../entities/salesAd.entity";
-import {
-    TSalesAdRequest,
-    TSalesAdResponse,
-} from "../../interfaces/salesAd.interface";
-import schemas from "../../schemas";
+import { TSalesAdRequest } from "../../interfaces/salesAd.interface";
 
 import repositories from "../../utils";
 

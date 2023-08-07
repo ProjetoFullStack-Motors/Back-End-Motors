@@ -16,4 +16,4 @@ const salesAdServices = {
     updateImageById,
 };
 
-export default salesAd;
+export default salesAdServices;
