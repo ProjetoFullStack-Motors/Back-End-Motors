@@ -7,7 +7,7 @@ type TSalesAdResponse = z.infer<typeof schemas.salesAd.response>;
 
 type TSalesAdRequest = z.infer<typeof schemas.salesAd.request>;
 
-type TSalesAdUpdate = DeepPartial<TSalesAdRequest>;
+type TSalesAdUpdate = DeepPartial<typeof schemas.salesAd.update>;
 
 type TSalesImagesResponse = z.infer<typeof schemas.salesAd.imagesResponse>;
 
