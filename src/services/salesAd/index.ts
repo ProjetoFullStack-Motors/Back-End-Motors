@@ -6,7 +6,7 @@ import { deleteById } from "./deleteSalesAd.service";
 import { createImage } from "./salesImage/createSalesImages.service";
 import { updateImageById } from "./salesImage/updateSalesImages.service";
 
-const salesAdServices = {
+const salesAd = {
     create,
     readAll,
     readById,
@@ -16,4 +16,4 @@ const salesAdServices = {
     updateImageById,
 };
 
-export default salesAdServices;
+export default salesAd;
