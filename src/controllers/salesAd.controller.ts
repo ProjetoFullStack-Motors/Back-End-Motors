@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import salesAdServices from "../services/salesAd";
+import services from "../services";
 
 const create = async (req: Request, res: Response): Promise<Response> => {
     return await res.json("create controller");
@@ -20,7 +20,7 @@ const updateById = async (req: Request, res: Response): Promise<Response> => {
 const deleteById = async (req: Request, res: Response): Promise<Response> => {
     const salesAdId: string = req.params.id;
 
-    await salesAdServices.deleteById(salesAdId);
+    await services.salesAd.deleteById(salesAdId);
 
     return res.status(204).send();
 };
