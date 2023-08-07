@@ -1,14 +1,15 @@
 import { Router } from "express";
+import controllers from "../controllers";
 
 const salesAd: Router = Router();
 
-salesAd.post("", () =>  console.log("salesAd post"));
-salesAd.get("", () =>  console.log("salesAd get"));
-salesAd.get("/:id", () =>  console.log("salesAd get by id"));
-salesAd.patch("/:id", () =>  console.log("salesAd post"));
-salesAd.delete("/:id", () =>  console.log("salesAd delete"));
+salesAd.post("", controllers.salesAd.create);
+salesAd.get("", controllers.salesAd.readAll);
+salesAd.get("/:id", controllers.salesAd.readById);
+salesAd.patch("/:id", controllers.salesAd.updateById);
+salesAd.delete("/:id", controllers.salesAd.deleteById);
 
-salesAd.post("/:salesAdId/images", () =>  console.log("salesImages post"));
-salesAd.patch("/:salesAdId/images", () =>  console.log("salesImages patch"));
+salesAd.post("/:id/images", controllers.salesAd.createImage);
+salesAd.patch("/:id/images/:imageId", controllers.salesAd.updateImageById);
 
 export default salesAd;

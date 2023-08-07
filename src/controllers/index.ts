@@ -2,10 +2,10 @@ import addresses from "./addresses.controller";
 import salesAd from "./salesAd.controller";
 import users from "./users.controller";
 
-const routes = {
+const controllers = {
 	addresses,
 	salesAd,
 	users,
 };
 
-export default routes;
+export default controllers;
