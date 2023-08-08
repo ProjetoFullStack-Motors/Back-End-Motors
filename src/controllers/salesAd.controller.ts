@@ -1,13 +1,15 @@
 import { Request, Response } from "express";
 
 import services from "../services";
-import { TSalesAdRequest, TSalesImagesRequest } from "../interfaces/salesAd.interface";
+import {
+    TSalesAdRequest,
+    TSalesAdResponse,
+    TSalesAdUpdate,
+    TSalesImagesRequest,
+} from "../interfaces/salesAd.interface";
 import { SalesAd } from "../entities/salesAd.entity";
 
-const create = async (
-    req: Request,
-    res: Response
-): Promise<Response> => {
+const create = async (req: Request, res: Response): Promise<Response> => {
     const salesAdData: TSalesAdRequest = req.body;
 
     const newSalesAd = await services.salesAd.create(salesAdData);
@@ -30,7 +32,15 @@ const readById = async (req: Request, res: Response): Promise<Response> => {
 };
 
 const updateById = async (req: Request, res: Response): Promise<Response> => {
-    return await res.json("updateById controller");
+    const salesAdId: string = req.params.id;
+    const salesAdData: TSalesAdUpdate = req.body;
+
+    const newSalesAd: TSalesAdResponse = await services.salesAd.updateById(
+        salesAdId,
+        salesAdData
+    );
+
+    return res.json(newSalesAd);
 };
 
 const deleteById = async (req: Request, res: Response): Promise<Response> => {
