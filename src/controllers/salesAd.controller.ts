@@ -10,8 +10,6 @@ const create = async (
 ): Promise<Response> => {
     const salesAdData: TSalesAdRequest = req.body;
 
-    console.log(salesAdData);
-
     const newSalesAd = await services.salesAd.create(salesAdData);
 
     return res.status(201).json(newSalesAd);
