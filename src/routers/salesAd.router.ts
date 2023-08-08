@@ -13,14 +13,23 @@ salesAd.post(
 );
 salesAd.get("", controllers.salesAd.readAll);
 salesAd.get("/:id", middlewares.existsSalesAdId, controllers.salesAd.readById);
-salesAd.patch("/:id", controllers.salesAd.updateById);
+salesAd.patch(
+    "/:id",
+    middlewares.existsSalesAdId,
+    middlewares.validateSchema(schemas.salesAd.update),
+    controllers.salesAd.updateById
+);
 salesAd.delete(
     "/:id",
     middlewares.existsSalesAdId,
     controllers.salesAd.deleteById
 );
 
-salesAd.post("/:id/images", middlewares.existsSalesAdId, controllers.salesAd.createImage);
+salesAd.post(
+    "/:id/images",
+    middlewares.existsSalesAdId,
+    controllers.salesAd.createImage
+);
 salesAd.patch("/:id/images/:imageId", controllers.salesAd.updateImageById);
 
 export default salesAd;
