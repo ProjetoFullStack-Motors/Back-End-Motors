@@ -35,7 +35,7 @@ export const filter = async (toListing: TListArgument, filterData?: TFilterSales
 
     salesAd = salesAd.map(saleAd => {return {...saleAd, price: saleAd.price / 100};});
 
-    const salesAdCount: number = await repositories.salesAdRepo.count();
+    const salesAdCount: number = salesAd.length;
 
     const prevPageUrl: string | null = `http://localhost:3000/salesAd?page=${page-1}&perPage=${perPage}`;
     const nextPageUrl: string | null = `http://localhost:3000/salesAd?page=${page+1}&perPage=${perPage}`;
