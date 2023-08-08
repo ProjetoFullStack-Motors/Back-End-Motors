@@ -1,4 +1,5 @@
 import { Router } from "express";
+
 import controllers from "../controllers";
 import schemas from "../schemas";
 import middlewares from "../middlewares";
@@ -8,7 +9,7 @@ const salesAd: Router = Router();
 salesAd.post(
     "",
     middlewares.validateSchema(schemas.salesAd.request),
-    controllers.salesAd.createSalesAdController
+    controllers.salesAd.create
 );
 salesAd.get("", controllers.salesAd.readAll);
 salesAd.get("/:id", middlewares.existsSalesAdId, controllers.salesAd.readById);

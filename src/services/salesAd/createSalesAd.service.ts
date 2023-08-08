@@ -3,7 +3,7 @@ import { TSalesAdRequest } from "../../interfaces/salesAd.interface";
 
 import repositories from "../../utils";
 
-export const createSalesAdService = async (
+export const create = async (
     salesAdData: TSalesAdRequest
 ): Promise<SalesAd> => {
     const sales: SalesAd = repositories.salesAdRepo.create(salesAdData);
