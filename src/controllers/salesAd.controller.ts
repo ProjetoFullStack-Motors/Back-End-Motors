@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import salesAdServices from "../services/salesAd";
-import { TSalesAdRequest } from "../interfaces/salesAd.interface";
+import { TSalesAdRequest, TSalesImagesRequest } from "../interfaces/salesAd.interface";
 
 const createSalesAdController = async (
     req: Request,
@@ -36,7 +36,12 @@ const deleteById = async (req: Request, res: Response): Promise<Response> => {
 };
 
 const createImage = async (req: Request, res: Response): Promise<Response> => {
-    return await res.json("createImage controller");
+    const imageData: TSalesImagesRequest = req.body;
+    const salesAdId = req.params.id;
+
+    await salesAdServices.createImage(imageData, salesAdId);
+
+    return res.status(201).json({ message: "Image created" });
 };
 
 const updateImageById = async (

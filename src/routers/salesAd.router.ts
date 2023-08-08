@@ -19,7 +19,7 @@ salesAd.delete(
     controllers.salesAd.deleteById
 );
 
-salesAd.post("/:id/images", controllers.salesAd.createImage);
+salesAd.post("/:id/images", middlewares.existsSalesAdId, controllers.salesAd.createImage);
 salesAd.patch("/:id/images/:imageId", controllers.salesAd.updateImageById);
 
 export default salesAd;
