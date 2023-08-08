@@ -12,6 +12,7 @@ salesAd.post(
     controllers.salesAd.create
 );
 salesAd.get("", middlewares.paginateListMovies, controllers.salesAd.readAll);
+salesAd.get("/filter", middlewares.paginateListMovies, controllers.salesAd.filterReadAll);
 salesAd.get("/:id", middlewares.existsSalesAdId, controllers.salesAd.readById);
 salesAd.patch(
     "/:id",

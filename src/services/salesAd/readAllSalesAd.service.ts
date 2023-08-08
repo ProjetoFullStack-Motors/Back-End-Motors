@@ -19,19 +19,21 @@ export const readAll = async (toListing: TListArgument): Promise<TPaginateSalesA
         ...objectToListing        
     };
 
-    const salesAd: SalesAd[] = await repositories.salesAdRepo.find(objectToListing);
+    let salesAd: SalesAd[] = await repositories.salesAdRepo.find(objectToListing);
+
+    salesAd = salesAd.map(saleAd => {return {...saleAd, price: saleAd.price / 100};});
 
     const salesAdCount: number = await repositories.salesAdRepo.count();
 
     const prevPageUrl: string | null = `http://localhost:3000/salesAd?page=${page-1}&perPage=${perPage}`;
     const nextPageUrl: string | null = `http://localhost:3000/salesAd?page=${page+1}&perPage=${perPage}`;
 
-    const listMoviesReturn: TPaginateSalesAdResponse = {
+    const listSalesAdReturn: TPaginateSalesAdResponse = {
         prevPage: page <= 1 ? null : prevPageUrl,
         nextPage: page * perPage >= salesAdCount ? null : nextPageUrl,
         count: salesAdCount,
         data: salesAd
     };
 
-    return listMoviesReturn;
+    return listSalesAdReturn;
 };

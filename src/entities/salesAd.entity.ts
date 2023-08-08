@@ -25,8 +25,8 @@ class SalesAd extends BaseEntity {
     @Column({ type: "text" })
     description: string;
 
-    @Column({ type: "date" })
-    year: string | Date;
+    @Column({ type: "varchar", length: 4 })
+    year: string;
 
     @Column({ type: "integer" })
     mileage: number;
@@ -49,7 +49,7 @@ class SalesImages extends BaseEntity {
     @Column({ type: "text" })
     imageUrl: string;
 
-    @Column({ type: "boolean" })
+    @Column({ type: "boolean", default: false })
     principal: boolean;
 
     @ManyToOne(() => SalesAd, (salesAd) => salesAd.salesImages, {

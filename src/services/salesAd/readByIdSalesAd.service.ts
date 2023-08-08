@@ -2,7 +2,7 @@ import { SalesAd } from "../../entities/salesAd.entity";
 import repositories from "../../utils";
 
 export const readById = async (salesAdId: string): Promise<SalesAd> => {
-    const saleAd: SalesAd | null = await repositories.salesAdRepo.findOne({
+    let saleAd: SalesAd | null = await repositories.salesAdRepo.findOne({
         where: {
             id: salesAdId,
         },
@@ -16,5 +16,10 @@ export const readById = async (salesAdId: string): Promise<SalesAd> => {
         }
     });
 
-    return saleAd!; 
+    saleAd = {
+        ...saleAd!,
+        price: saleAd!.price / 100
+    };
+
+    return saleAd; 
 };

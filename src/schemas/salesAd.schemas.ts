@@ -1,11 +1,13 @@
 import { z } from "zod";
 import { Engine } from "../entities/salesAd.entity";
 
+const onlyNumbers = new RegExp("^[0-9]+$");
+
 const response = z.object({
     id: z.string(),
     brand: z.string().max(255),
     model: z.string().max(255),
-    year: z.string(),
+    year: z.string().min(4).max(4).regex(onlyNumbers),
     mileage: z.number(),
     engine: z.nativeEnum(Engine),
     isGoodPrice: z.boolean(),
@@ -36,7 +38,7 @@ const update = z
 const imagesResponse = z.object({
     id: z.string(),
     imageUrl: z.string(),
-    principal: z.boolean(),
+    principal: z.boolean().default(false),
     created_at: z.string(),
 });
 

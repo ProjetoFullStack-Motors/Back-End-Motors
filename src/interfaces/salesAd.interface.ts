@@ -29,6 +29,26 @@ type TPaginateSalesAdResponse = {
     data: SalesAd[];
 }
 
+type TPriceRange = {
+    minPrice: number,
+    maxPrice: number
+}
+
+type TMileageRange = {
+    minMileage: number,
+    maxMileage: number
+}
+
+type TFilterSalesAd = {
+    brand?: string | null | undefined;
+    model?: string | null | undefined;
+    color?: string | null | undefined;
+    year?: string | null | undefined;
+    engine?: string | null | undefined;
+    rangePrice?: TPriceRange | null | undefined;
+    rangeMileage?: TMileageRange | null | undefined;
+}
+
 export {
     TSalesAdResponse,
     TSalesAdRequest,
@@ -37,5 +57,6 @@ export {
     TSalesImagesRequest,
     TSalesAdResponseArray,
     TListArgument,
-    TPaginateSalesAdResponse
+    TPaginateSalesAdResponse,
+    TFilterSalesAd
 };

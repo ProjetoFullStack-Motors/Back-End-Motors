@@ -5,6 +5,7 @@ import { updateById } from "./updateSalesAd.service";
 import { deleteById } from "./deleteSalesAd.service";
 import { createImage } from "./salesImage/createSalesImages.service";
 import { updateImageById } from "./salesImage/updateSalesImages.service";
+import { filter } from "./filterSalesAd.service";
 
 const salesAd = {
     create,
@@ -14,6 +15,7 @@ const salesAd = {
     deleteById,
     createImage,
     updateImageById,
+    filter
 };
 
 export default salesAd;
