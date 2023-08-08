@@ -64,7 +64,16 @@ const updateImageById = async (
     req: Request,
     res: Response
 ): Promise<Response> => {
-    return await res.json("updateImageById controller");
+    const { id, imageId } = req.params;
+    const salesImageData: TSalesImagesRequest = req.body;
+
+    const newSaleImage = await services.salesAd.updateImageById(
+        id,
+        imageId,
+        salesImageData
+    );
+
+    return res.json(newSaleImage);
 };
 
 const salesAd = {
