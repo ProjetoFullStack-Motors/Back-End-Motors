@@ -40,7 +40,7 @@ const imagesResponse = z.object({
     created_at: z.string(),
 });
 
-const imagesRequest = imagesResponse.omit({ id: true, createdAt: true });
+const imagesRequest = imagesResponse.omit({ id: true, created_at: true });
 
 const salesAd = {
     response,
