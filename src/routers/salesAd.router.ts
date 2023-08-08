@@ -8,10 +8,10 @@ const salesAd: Router = Router();
 
 salesAd.post(
     "",
-    // middlewares.validateSchema(schemas.salesAd.request),
+    middlewares.validateSchema(schemas.salesAd.request),
     controllers.salesAd.create
 );
-salesAd.get("", controllers.salesAd.readAll);
+salesAd.get("", middlewares.paginateListMovies, controllers.salesAd.readAll);
 salesAd.get("/:id", middlewares.existsSalesAdId, controllers.salesAd.readById);
 salesAd.patch(
     "/:id",

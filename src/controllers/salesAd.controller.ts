@@ -18,7 +18,8 @@ const create = async (req: Request, res: Response): Promise<Response> => {
 };
 
 const readAll = async (req: Request, res: Response): Promise<Response> => {
-    const salesAd = await services.salesAd.readAll();
+    const toListing = res.locals.toListing;
+    const salesAd = await services.salesAd.readAll(toListing);
 
     return res.status(200).json(salesAd);
 };
