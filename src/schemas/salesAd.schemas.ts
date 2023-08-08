@@ -13,7 +13,7 @@ const response = z.object({
     color: z.string().max(255),
     description: z.string(),
     status: z.boolean().default(true),
-    created_at: z.bigint(),
+    created_at: z.string(),
 });
 
 const request = response.omit({
@@ -23,19 +23,21 @@ const request = response.omit({
 
 const responseArray = response.array();
 
-const update = z.object({
-    price: z.number(),
-    color: z.string(),
-    description: z.string(),
-    mileage: z.number(),
-    status: z.boolean(),
-}).partial();
+const update = z
+    .object({
+        price: z.number(),
+        color: z.string(),
+        description: z.string(),
+        mileage: z.number(),
+        status: z.boolean(),
+    })
+    .partial();
 
 const imagesResponse = z.object({
     id: z.string(),
     imageUrl: z.string(),
     principal: z.boolean(),
-    createdAt: z.string(),
+    created_at: z.string(),
 });
 
 const imagesRequest = imagesResponse.omit({ id: true, createdAt: true });
