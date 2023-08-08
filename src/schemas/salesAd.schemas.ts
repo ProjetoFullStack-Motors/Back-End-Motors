@@ -13,12 +13,12 @@ const response = z.object({
     color: z.string().max(255),
     description: z.string(),
     status: z.boolean().default(true),
-    createdAt: z.string(),
+    created_at: z.bigint(),
 });
 
 const request = response.omit({
     id: true,
-    createdAt: true,
+    created_at: true,
 });
 
 const responseArray = response.array();
