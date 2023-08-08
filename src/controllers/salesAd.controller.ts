@@ -16,7 +16,9 @@ const createSalesAdController = async (
 };
 
 const readAll = async (req: Request, res: Response): Promise<Response> => {
-    return await res.json("readAll controller");
+    const salesAd = await salesAdServices.readAll();
+
+    return res.status(200).json(salesAd);
 };
 
 const readById = async (req: Request, res: Response): Promise<Response> => {

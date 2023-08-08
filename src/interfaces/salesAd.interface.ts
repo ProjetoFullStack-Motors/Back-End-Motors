@@ -5,6 +5,8 @@ import schemas from "../schemas";
 
 type TSalesAdResponse = z.infer<typeof schemas.salesAd.response>;
 
+type TSalesAdResponseArray = z.infer<typeof schemas.salesAd.responseArray>
+
 type TSalesAdRequest = z.infer<typeof schemas.salesAd.request>;
 
 type TSalesAdUpdate = DeepPartial<typeof schemas.salesAd.update>;
@@ -19,4 +21,5 @@ export {
     TSalesAdUpdate,
     TSalesImagesResponse,
     TSalesImagesRequest,
+    TSalesAdResponseArray,
 };
