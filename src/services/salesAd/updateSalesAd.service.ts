@@ -9,7 +9,7 @@ import repositories from "../../utils";
 export const updateById = async (
     salesAdId: string,
     salesAdData: TSalesAdUpdate
-): Promise<TSalesAdResponse | void> => {
+): Promise<TSalesAdResponse> => {
     const oldSaleAd: SalesAd | null = await repositories.salesAdRepo.findOneBy({
         id: salesAdId,
     });
