@@ -31,7 +31,9 @@ export const filter = async (toListing: TListArgument, filterData?: TFilterSales
         if (filterData.valueRange) objectToListing = {...objectToListing, where: {price: Between((filterData.valueRange!.minValue)  * 100, (filterData.valueRange!.maxValue ) * 100)}};
     }
 
-    const salesAd: SalesAd[] = await repositories.salesAdRepo.find(objectToListing);
+    let salesAd: SalesAd[] = await repositories.salesAdRepo.find(objectToListing);
+
+    salesAd = salesAd.map(saleAd => {return {...saleAd, price: saleAd.price / 100};});
 
     const salesAdCount: number = await repositories.salesAdRepo.count();
 

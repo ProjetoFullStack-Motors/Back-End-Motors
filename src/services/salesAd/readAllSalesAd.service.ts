@@ -19,7 +19,9 @@ export const readAll = async (toListing: TListArgument): Promise<TPaginateSalesA
         ...objectToListing        
     };
 
-    const salesAd: SalesAd[] = await repositories.salesAdRepo.find(objectToListing);
+    let salesAd: SalesAd[] = await repositories.salesAdRepo.find(objectToListing);
+
+    salesAd = salesAd.map(saleAd => {return {...saleAd, price: saleAd.price / 100};});
 
     const salesAdCount: number = await repositories.salesAdRepo.count();
 
