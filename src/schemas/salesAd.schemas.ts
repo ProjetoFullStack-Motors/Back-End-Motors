@@ -29,7 +29,7 @@ const update = z.object({
     description: z.string(),
     mileage: z.number(),
     status: z.boolean(),
-});
+}).partial();
 
 const imagesResponse = z.object({
     id: z.string(),
