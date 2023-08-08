@@ -8,6 +8,11 @@ export const readById = async (salesAdId: string): Promise<SalesAd> => {
         },
         relations: {
             salesImages: true
+        },
+        order: {
+            salesImages: {
+                created_at: "ASC"
+            }
         }
     });
 

@@ -7,6 +7,11 @@ export const readAll = async (): Promise<SalesAd[]> => {
         relations: {
             salesImages: true,
         },
+        order: {
+            salesImages: {
+                created_at: "ASC"
+            }
+        }
     });
 
     if (!salesAd) {
