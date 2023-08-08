@@ -1,10 +1,10 @@
 _type: export
 __export_format: 4
-__export_date: 2023-08-08T16:09:57.090Z
+__export_date: 2023-08-08T17:52:28.626Z
 __export_source: insomnia.desktop.app:v2023.4.0
 resources:
-  - _id: req_d7b07f09b61841e0a1f0a53f61b523f6
-    parentId: fld_54c206e6270744deb6a0e54949225ed6
+  - _id: req_7123cebd781f4693aa963e34286fad05
+    parentId: fld_fd54453361bb48cf95f901ae06e980a7
     modified: 1691506972763
     created: 1691419595379
     url: "{{ _.baseUrl }}/salesAd"
@@ -39,8 +39,8 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: fld_54c206e6270744deb6a0e54949225ed6
-    parentId: wrk_595ebb21ab1d45528cefb7e84adc2ad7
+  - _id: fld_fd54453361bb48cf95f901ae06e980a7
+    parentId: wrk_3f3be41276034d42b94adadfb2e0c56b
     modified: 1691419586901
     created: 1691419586901
     name: SalesAd
@@ -49,16 +49,16 @@ resources:
     environmentPropertyOrder: null
     metaSortKey: -1691419586901
     _type: request_group
-  - _id: wrk_595ebb21ab1d45528cefb7e84adc2ad7
+  - _id: wrk_3f3be41276034d42b94adadfb2e0c56b
     parentId: null
-    modified: 1691504450913
-    created: 1691504450913
+    modified: 1691511757035
+    created: 1691511757035
     name: BackEnd-Motors
     description: ""
     scope: design
     _type: workspace
-  - _id: req_807e4fdcf88e49b4b63a7a97336110b4
-    parentId: fld_54c206e6270744deb6a0e54949225ed6
+  - _id: req_b8adbc615128419d82cf0ba4e3c0556e
+    parentId: fld_fd54453361bb48cf95f901ae06e980a7
     modified: 1691419682855
     created: 1691419680738
     url: "{{ _.baseUrl }}/salesAd"
@@ -78,8 +78,8 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: req_a5776d5eeccb408a801bb125b636a194
-    parentId: fld_54c206e6270744deb6a0e54949225ed6
+  - _id: req_5f624e3549ac4d1fb2c7f158a5af5732
+    parentId: fld_fd54453361bb48cf95f901ae06e980a7
     modified: 1691419713858
     created: 1691419712038
     url: "{{ _.baseUrl }}/salesAd/1"
@@ -99,17 +99,26 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: req_9ea0fc20ce2f450d85e67314b9e0cf81
-    parentId: fld_54c206e6270744deb6a0e54949225ed6
-    modified: 1691419693858
+  - _id: req_ab8665c43f5b445fa33a0f745a060af2
+    parentId: fld_fd54453361bb48cf95f901ae06e980a7
+    modified: 1691514745040
     created: 1691419687406
-    url: "{{ _.baseUrl }}/salesAd/1"
+    url: "{{ _.baseUrl }}/salesAd/{{ _.salesAdId }}"
     name: Update
     description: ""
     method: PATCH
-    body: {}
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        		"price": 1,
+        		"color": "preto",
+        		"description":"Opcionais"
+        }
     parameters: []
-    headers: []
+    headers:
+      - name: Content-Type
+        value: application/json
     authentication: {}
     metaSortKey: -1691072029076.3125
     isPrivate: false
@@ -120,11 +129,11 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: req_d8a4b925a081465dbc398a90b348f781
-    parentId: fld_54c206e6270744deb6a0e54949225ed6
-    modified: 1691419700999
+  - _id: req_7ef9eda71e1c46179baea1d00da38b50
+    parentId: fld_fd54453361bb48cf95f901ae06e980a7
+    modified: 1691512133633
     created: 1691419699320
-    url: "{{ _.baseUrl }}/salesAd/1"
+    url: "{{ _.baseUrl }}/salesAd/999221c4-c0dc-47f6-844d-4cb9aecd5c55"
     name: Delete
     description: ""
     method: DELETE
@@ -141,8 +150,8 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: req_bfd34dde0a7d4ae0adffe2a4736049c0
-    parentId: fld_54c206e6270744deb6a0e54949225ed6
+  - _id: req_bb4c046c3fe345d99454e542b12dda0e
+    parentId: fld_fd54453361bb48cf95f901ae06e980a7
     modified: 1691506414647
     created: 1691419658131
     url: "{{ _.baseUrl }}/salesAd/{{ _.salesAdId }}/images"
@@ -173,17 +182,29 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: req_2abcda449ac847688e00c1af580f30d1
-    parentId: fld_54c206e6270744deb6a0e54949225ed6
-    modified: 1691419725126
+  - _id: req_e825d0b6e85d4783a3016a2da66812b9
+    parentId: fld_fd54453361bb48cf95f901ae06e980a7
+    modified: 1691516769604
     created: 1691419722917
-    url: "{{ _.baseUrl }}/salesAd/1/images"
+    url: "{{ _.baseUrl }}/salesAd/{{ _.salesAdId
+      }}/images/2f95981e-7cec-4569-ae0c-b0ff75392c37"
     name: Update Image
     description: ""
     method: PATCH
-    body: {}
+    body:
+      mimeType: application/json
+      text: >-
+        {
+
+        "imageUrl":"http://nissaninsider.co.uk/wp-content/uploads/2015/10/136272_1_5.jpg",	
+
+        "principal": true
+
+        }
     parameters: []
-    headers: []
+    headers:
+      - name: Content-Type
+        value: application/json
     authentication: {}
     metaSortKey: -1690888027292.125
     isPrivate: false
@@ -194,14 +215,14 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: env_c9047389b1864f1b98b8882075505a95
-    parentId: wrk_595ebb21ab1d45528cefb7e84adc2ad7
-    modified: 1691506410619
+  - _id: env_a8fe3b6a11f74ac4883e1d72c99e94d8
+    parentId: wrk_3f3be41276034d42b94adadfb2e0c56b
+    modified: 1691511789776
     created: 1691419579648
     name: Base Environment
     data:
       baseUrl: http://localhost:3000
-      salesAdId: "{% response 'body', 'req_d7b07f09b61841e0a1f0a53f61b523f6',
+      salesAdId: "{% response 'body', 'req_7123cebd781f4693aa963e34286fad05',
         'b64::JC5pZA==::46b', 'never', 60 %}"
     dataPropertyOrder:
       "&":
@@ -211,17 +232,17 @@ resources:
     isPrivate: false
     metaSortKey: 1691419579648
     _type: environment
-  - _id: jar_02482416ad2e4bb1a9cefd7b3d9bd4b5
-    parentId: wrk_595ebb21ab1d45528cefb7e84adc2ad7
+  - _id: jar_49c38f8fc5fd47a98a8dac754d11e80f
+    parentId: wrk_3f3be41276034d42b94adadfb2e0c56b
     modified: 1691419579649
     created: 1691419579649
     name: Default Jar
     cookies: []
     _type: cookie_jar
-  - _id: spc_d4d52d60bd0e478ebf937a75e8e7563f
-    parentId: wrk_595ebb21ab1d45528cefb7e84adc2ad7
-    modified: 1691504450916
-    created: 1691504450915
+  - _id: spc_6081c75874c24fb0859034ca8f2fc8af
+    parentId: wrk_3f3be41276034d42b94adadfb2e0c56b
+    modified: 1691511757039
+    created: 1691511757038
     fileName: BackEnd-Motors
     contents: ""
     contentType: yaml
