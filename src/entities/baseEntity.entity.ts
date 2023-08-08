@@ -1,14 +1,17 @@
 import { randomUUID } from "node:crypto";
 import { Column, PrimaryColumn } from "typeorm";
 
-console.log(new Date().getDate());
+const createDate = (): string => {
+    const time = BigInt(new Date().getTime());
+    return time.toString();
+};
 
 export class BaseEntity {
     @PrimaryColumn()
     	id: string;
 
-    @Column({ type: "timestamp"})
-    	created_at: string | Date;
+    @Column({ type: "text"})
+    	created_at: string;
 
     constructor() {
     	if (!this.id) {
@@ -16,7 +19,7 @@ export class BaseEntity {
     	}
 
         if (!this.created_at) {
-            this.created_at = new Date();
+            this.created_at = createDate();
         }
     }
 }

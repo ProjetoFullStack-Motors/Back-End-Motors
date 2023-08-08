@@ -8,7 +8,7 @@ const salesAd: Router = Router();
 
 salesAd.post(
     "",
-    middlewares.validateSchema(schemas.salesAd.request),
+    // middlewares.validateSchema(schemas.salesAd.request),
     controllers.salesAd.create
 );
 salesAd.get("", controllers.salesAd.readAll);
