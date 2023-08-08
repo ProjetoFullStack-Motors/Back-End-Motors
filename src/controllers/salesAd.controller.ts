@@ -24,6 +24,14 @@ const readAll = async (req: Request, res: Response): Promise<Response> => {
     return res.status(200).json(salesAd);
 };
 
+const filterReadAll = async (req: Request, res: Response): Promise<Response> => {
+    const filterData = req.body;
+    const toListing = res.locals.toListing;
+    const salesAd = await services.salesAd.filter(toListing, filterData);
+
+    return res.status(200).json(salesAd);
+};
+
 const readById = async (req: Request, res: Response): Promise<Response> => {
     const salesAdId = req.params.id;
 
@@ -85,6 +93,7 @@ const salesAd = {
     deleteById,
     createImage,
     updateImageById,
+    filterReadAll
 };
 
 export default salesAd;

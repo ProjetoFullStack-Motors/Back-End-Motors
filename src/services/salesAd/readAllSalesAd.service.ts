@@ -26,12 +26,12 @@ export const readAll = async (toListing: TListArgument): Promise<TPaginateSalesA
     const prevPageUrl: string | null = `http://localhost:3000/salesAd?page=${page-1}&perPage=${perPage}`;
     const nextPageUrl: string | null = `http://localhost:3000/salesAd?page=${page+1}&perPage=${perPage}`;
 
-    const listMoviesReturn: TPaginateSalesAdResponse = {
+    const listSalesAdReturn: TPaginateSalesAdResponse = {
         prevPage: page <= 1 ? null : prevPageUrl,
         nextPage: page * perPage >= salesAdCount ? null : nextPageUrl,
         count: salesAdCount,
         data: salesAd
     };
 
-    return listMoviesReturn;
+    return listSalesAdReturn;
 };
