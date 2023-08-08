@@ -3,9 +3,9 @@ import salesAd from "./salesAd";
 import users from "./users";
 
 const services = {
-	addresses,
-	users,
-	salesAd
+    addresses,
+    users,
+    salesAd
 };
 
 export default services;

@@ -7,8 +7,8 @@ const salesAdRepo: Repository<SalesAd> = AppDataSource.getRepository(SalesAd);
 const salesImageRepo: Repository<SalesImages> = AppDataSource.getRepository(SalesImages);
 
 const repositories = {
-	salesAdRepo,
-	salesImageRepo
+    salesAdRepo,
+    salesImageRepo
 };
 
 export default repositories;
