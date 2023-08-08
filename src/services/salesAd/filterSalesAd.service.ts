@@ -8,6 +8,7 @@ export const filter = async (toListing: TListArgument, filterData?: TFilterSales
     let objectToListing = toListing.objectToListing;
     const page = toListing.page;
     const perPage = toListing.perPage;
+    let where = {};
 
     objectToListing = {
         relations: {
@@ -22,13 +23,28 @@ export const filter = async (toListing: TListArgument, filterData?: TFilterSales
     };
     
     if (filterData) {
-        if (filterData.brand) objectToListing = {...objectToListing, where: {brand: filterData.brand}};
-        if (filterData.model) objectToListing = {...objectToListing, where: {model: filterData.model}};
-        if (filterData.color) objectToListing = {...objectToListing, where: {color: filterData.color}};
-        if (filterData.year) objectToListing = {...objectToListing, where: {year: filterData.year}};
-        if (filterData.engine) objectToListing = {...objectToListing, where: {engine: filterData.engine}};
-        if (filterData.mileageRange) objectToListing = {...objectToListing, where: {mileage: Between(filterData.mileageRange!.minMileage, filterData.mileageRange!.maxMileage)}};
-        if (filterData.valueRange) objectToListing = {...objectToListing, where: {price: Between((filterData.valueRange!.minValue)  * 100, (filterData.valueRange!.maxValue ) * 100)}};
+        const filterDataArray = Object.entries(filterData);
+
+        filterDataArray.forEach(data => {
+            if (data[1] instanceof Object) {
+                const rangeArray = Object.entries(data[1]!);
+                let fieldName: string | string[] = data[0].split("");
+                fieldName = fieldName.splice(5, fieldName.length);
+                fieldName = fieldName.join("").toLowerCase();
+
+                where = {
+                    ...where,
+                    [fieldName]: Between((rangeArray[0][1])  * 100, (rangeArray[1][1]) * 100)
+                };
+                objectToListing = {...objectToListing, where: where};
+            } else {
+                where = {
+                    ...where,
+                    [data[0]]: data[1]
+                };
+                objectToListing = {...objectToListing, where: where};
+            }
+        });
     }
 
     let salesAd: SalesAd[] = await repositories.salesAdRepo.find(objectToListing);

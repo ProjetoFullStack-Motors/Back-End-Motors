@@ -29,9 +29,9 @@ type TPaginateSalesAdResponse = {
     data: SalesAd[];
 }
 
-type TValueRange = {
-    minValue: number,
-    maxValue: number
+type TPriceRange = {
+    minPrice: number,
+    maxPrice: number
 }
 
 type TMileageRange = {
@@ -45,8 +45,8 @@ type TFilterSalesAd = {
     color?: string | null | undefined;
     year?: string | null | undefined;
     engine?: string | null | undefined;
-    valueRange?: TValueRange | null | undefined;
-    mileageRange?: TMileageRange | null | undefined;
+    rangePrice?: TPriceRange | null | undefined;
+    rangeMileage?: TMileageRange | null | undefined;
 }
 
 export {
