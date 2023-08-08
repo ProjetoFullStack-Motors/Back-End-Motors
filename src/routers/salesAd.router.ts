@@ -30,6 +30,12 @@ salesAd.post(
     middlewares.existsSalesAdId,
     controllers.salesAd.createImage
 );
-salesAd.patch("/:id/images/:imageId", controllers.salesAd.updateImageById);
+salesAd.patch(
+    "/:id/images/:imageId",
+    middlewares.existsSalesAdId,
+    middlewares.existsSalesImageId,
+    middlewares.validateSchema(schemas.salesAd.imagesRequest),
+    controllers.salesAd.updateImageById
+);
 
 export default salesAd;
