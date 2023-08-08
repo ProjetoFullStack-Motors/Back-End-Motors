@@ -11,7 +11,7 @@ salesAd.post(
     controllers.salesAd.createSalesAdController
 );
 salesAd.get("", controllers.salesAd.readAll);
-salesAd.get("/:id", controllers.salesAd.readById);
+salesAd.get("/:id", middlewares.existsSalesAdId, controllers.salesAd.readById);
 salesAd.patch("/:id", controllers.salesAd.updateById);
 salesAd.delete(
     "/:id",

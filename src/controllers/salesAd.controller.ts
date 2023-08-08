@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import salesAdServices from "../services/salesAd";
 import { TSalesAdRequest, TSalesImagesRequest } from "../interfaces/salesAd.interface";
+import { SalesAd } from "../entities/salesAd.entity";
 
 const createSalesAdController = async (
     req: Request,
@@ -22,7 +23,11 @@ const readAll = async (req: Request, res: Response): Promise<Response> => {
 };
 
 const readById = async (req: Request, res: Response): Promise<Response> => {
-    return await res.json("readById controller");
+    const salesAdId = req.params.id;
+
+    const saleAd: SalesAd = await salesAdServices.readById(salesAdId);
+
+    return res.status(200).json(saleAd);
 };
 
 const updateById = async (req: Request, res: Response): Promise<Response> => {
