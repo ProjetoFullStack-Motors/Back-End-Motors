@@ -10,14 +10,12 @@ export const updateById = async (
     salesAdId: string,
     salesAdData: TSalesAdUpdate
 ): Promise<TSalesAdResponse | void> => {
-    const findSaleAd: SalesAd | null = await repositories.salesAdRepo.findOneBy(
-        {
-            id: salesAdId,
-        }
-    );
+    const oldSaleAd: SalesAd | null = await repositories.salesAdRepo.findOneBy({
+        id: salesAdId,
+    });
 
     const newSaleAd = repositories.salesAdRepo.create({
-        ...findSaleAd!,
+        ...oldSaleAd!,
         ...salesAdData,
     });
 
