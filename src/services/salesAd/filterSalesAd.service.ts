@@ -4,7 +4,7 @@ import { TFilterSalesAd, TListArgument, TPaginateSalesAdResponse } from "../../i
 import repositories from "../../utils";
 import { SalesAd } from "../../entities/salesAd.entity";
 
-export const filter = async (toListing: TListArgument, filterData?: TFilterSalesAd): Promise<TPaginateSalesAdResponse> => {
+const filter = async (toListing: TListArgument, filterData?: TFilterSalesAd): Promise<TPaginateSalesAdResponse> => {
     let objectToListing = toListing.objectToListing;
     const objectSkipTake = { 
         skip: objectToListing.skip,
@@ -66,3 +66,4 @@ export const filter = async (toListing: TListArgument, filterData?: TFilterSales
     return listSalesAdReturn;
 };
 
+export default filter;

@@ -4,7 +4,7 @@ import repositories from "../../utils";
 import { TSalesAdRequest } from "../../interfaces/salesAd.interface";
 import { array, arrayImages, colors, engines, makeModelBrand } from "./seed.mock";
 
-export const seedDb = async () => {
+const seedDb = async () => {
 
     const saleAdRepo: Repository<SalesAd> = repositories.salesAdRepo;
     const salesImagesRepo: Repository<SalesImages> = repositories.salesImageRepo;
@@ -45,3 +45,5 @@ export const seedDb = async () => {
         }
     }
 };
+
+export default seedDb;

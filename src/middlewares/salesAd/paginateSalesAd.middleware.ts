@@ -2,7 +2,7 @@
 import { NextFunction, Request, Response } from "express";
 import { FindManyOptions } from "typeorm";
 
-export const paginateSalesAd = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+const paginateSalesAd = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
     const querys = req.query;
     const queryPage = querys.page;
     
@@ -28,3 +28,5 @@ export const paginateSalesAd = async (req: Request, res: Response, next: NextFun
 
     return next();
 };
+
+export default paginateSalesAd;

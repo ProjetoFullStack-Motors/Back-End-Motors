@@ -6,7 +6,7 @@ import {
 import schemas from "../../schemas";
 import repositories from "../../utils";
 
-export const updateById = async (
+const updateById = async (
     salesAdId: string,
     salesAdData: TSalesAdUpdate
 ): Promise<TSalesAdResponse> => {
@@ -23,3 +23,5 @@ export const updateById = async (
 
     return schemas.salesAd.response.parse(newSaleAd);
 };
+
+export default updateById;

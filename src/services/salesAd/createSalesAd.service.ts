@@ -3,7 +3,7 @@ import { TSalesAdRequest } from "../../interfaces/salesAd.interface";
 
 import repositories from "../../utils";
 
-export const create = async (
+const create = async (
     salesAdData: TSalesAdRequest
 ): Promise<SalesAd> => {
     salesAdData = {
@@ -17,3 +17,5 @@ export const create = async (
 
     return sales;
 };
+
+export default create;

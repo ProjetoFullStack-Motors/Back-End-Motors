@@ -1,7 +1,7 @@
 import { SalesAd } from "../../entities/salesAd.entity";
 import repositories from "../../utils";
 
-export const deleteById = async (salesAdId: string): Promise<void> => {
+const deleteById = async (salesAdId: string): Promise<void> => {
     const salesAd: SalesAd | null = await repositories.salesAdRepo.findOneBy({
         id: salesAdId,
     });
@@ -10,3 +10,5 @@ export const deleteById = async (salesAdId: string): Promise<void> => {
 
     return;
 };
+
+export default deleteById;

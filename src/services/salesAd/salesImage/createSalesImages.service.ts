@@ -2,7 +2,7 @@ import { SalesAd, SalesImages } from "../../../entities/salesAd.entity";
 import { TSalesImagesRequest } from "../../../interfaces/salesAd.interface";
 import repositories from "../../../utils";
 
-export const createImage = async (salesAdData: TSalesImagesRequest, salesAdId: string): Promise<SalesImages> => {
+const createImage = async (salesAdData: TSalesImagesRequest, salesAdId: string): Promise<SalesImages> => {
 
     const sales: SalesAd | null = await repositories.salesAdRepo.findOneBy(
         { 
@@ -18,3 +18,5 @@ export const createImage = async (salesAdData: TSalesImagesRequest, salesAdId: s
 
     return image;
 };
+
+export default createImage;

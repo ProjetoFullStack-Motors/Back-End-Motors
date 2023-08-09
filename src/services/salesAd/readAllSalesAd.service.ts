@@ -5,7 +5,7 @@ import {
 } from "../../interfaces/salesAd.interface";
 import repositories from "../../utils";
 
-export const readAll = async (
+const readAll = async (
     toListing: TListArgument
 ): Promise<TPaginateSalesAdResponse> => {
     let objectToListing = toListing.objectToListing;
@@ -49,3 +49,5 @@ export const readAll = async (
 
     return listSalesAdReturn;
 };
+
+export default readAll;

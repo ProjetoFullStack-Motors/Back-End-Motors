@@ -1,7 +1,7 @@
 import { SalesAd } from "../../entities/salesAd.entity";
 import repositories from "../../utils";
 
-export const readById = async (salesAdId: string): Promise<SalesAd> => {
+const readById = async (salesAdId: string): Promise<SalesAd> => {
     let saleAd: SalesAd | null = await repositories.salesAdRepo.findOne({
         where: {
             id: salesAdId,
@@ -23,3 +23,5 @@ export const readById = async (salesAdId: string): Promise<SalesAd> => {
 
     return saleAd; 
 };
+
+export default readById;

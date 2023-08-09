@@ -6,7 +6,7 @@ import {
 import schemas from "../../../schemas";
 import repositories from "../../../utils";
 
-export const updateImageById = async (
+const updateImageById = async (
     salesAdId: string,
     salesImageId: string,
     imageData: TSalesImagesRequest
@@ -30,3 +30,5 @@ export const updateImageById = async (
 
     return schemas.salesAd.imagesResponse.parse(newSaleImage);
 };
+
+export default updateImageById;
