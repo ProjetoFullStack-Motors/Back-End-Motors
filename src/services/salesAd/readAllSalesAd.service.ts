@@ -9,7 +9,7 @@ const readAll = async (
     toListing: TListArgument
 ): Promise<TPaginateSalesAdResponse> => {
     let objectToListing = toListing.objectToListing;
-    console.log(objectToListing);
+
     const page = toListing.page;
     const perPage = toListing.perPage;
 
@@ -20,12 +20,9 @@ const readAll = async (
         ...objectToListing,
     };
 
-    console.log(objectToListing);
-
     let salesAd: SalesAd[] = await repositories.salesAdRepo.find(
         objectToListing
     );
-    console.log(salesAd.length);
 
     salesAd = salesAd.map((saleAd) => {
         return { ...saleAd, price: saleAd.price / 100 };
