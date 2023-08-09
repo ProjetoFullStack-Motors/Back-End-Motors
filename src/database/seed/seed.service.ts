@@ -30,7 +30,7 @@ export const seedDb = async () => {
         for(const obj of arrayImages) {
             if (obj === 0) {
                 const image = salesImagesRepo.create({
-                    imageUrl: "url de imagem",
+                    imageUrl: modelBrand[2],
                     principal: true,
                     salesAd: newSaleAd
                 });
@@ -38,7 +38,7 @@ export const seedDb = async () => {
             } 
 
             const image = salesImagesRepo.create({
-                imageUrl: "url de imagem",
+                imageUrl: modelBrand[2],
                 salesAd: newSaleAd
             });
             await salesImagesRepo.save(image);
