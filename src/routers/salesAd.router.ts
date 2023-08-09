@@ -3,6 +3,7 @@ import { Router } from "express";
 import controllers from "../controllers";
 import schemas from "../schemas";
 import middlewares from "../middlewares";
+import { seedController } from "../database/seed/seed.controller";
 
 const salesAd: Router = Router();
 
@@ -11,8 +12,9 @@ salesAd.post(
     middlewares.validateSchema(schemas.salesAd.request),
     controllers.salesAd.create
 );
-salesAd.get("", middlewares.paginateListMovies, controllers.salesAd.readAll);
-salesAd.get("/filter", middlewares.paginateListMovies, controllers.salesAd.filterReadAll);
+salesAd.post("/seed", seedController);
+salesAd.get("", middlewares.paginateSalesAd, controllers.salesAd.readAll);
+salesAd.get("/filter", middlewares.paginateSalesAd, controllers.salesAd.filterReadAll);
 salesAd.get("/:id", middlewares.existsSalesAdId, controllers.salesAd.readById);
 salesAd.patch(
     "/:id",

@@ -10,7 +10,7 @@ export class BaseEntity {
     @PrimaryColumn()
     	id: string;
 
-    @Column({ type: "text"})
+    @Column({ type: "text" })
     	created_at: string;
 
     constructor() {

@@ -19,7 +19,7 @@ type TSalesImagesRequest = z.infer<typeof schemas.salesAd.imagesRequest>;
 type TListArgument = {
     objectToListing: FindManyOptions,
     page: number,
-    perPage: number
+    perPage: number,
 }
 
 type TPaginateSalesAdResponse = {

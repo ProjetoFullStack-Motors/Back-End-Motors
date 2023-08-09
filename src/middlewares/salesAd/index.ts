@@ -1,11 +1,11 @@
 import { existsSalesAdId } from "./existsSalesAdId.middleware";
 import { existsSalesImageId } from "./existsSalesImageId.middleware";
-import { paginateListMovies } from "./paginateSalesAd.middleware";
+import { paginateSalesAd } from "./paginateSalesAd.middleware";
 
 const salesAd = {
     existsSalesAdId,
     existsSalesImageId,
-    paginateListMovies
+    paginateSalesAd
 };
 
 export default salesAd;

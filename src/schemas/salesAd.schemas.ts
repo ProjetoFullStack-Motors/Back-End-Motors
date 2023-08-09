@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { Engine } from "../entities/salesAd.entity";
 
 const onlyNumbers = new RegExp("^[0-9]+$");
 
@@ -9,7 +8,7 @@ const response = z.object({
     model: z.string().max(255),
     year: z.string().min(4).max(4).regex(onlyNumbers),
     mileage: z.number(),
-    engine: z.nativeEnum(Engine),
+    engine: z.enum(["flex", "hybrid", "electric"]),
     isGoodPrice: z.boolean(),
     price: z.number(),
     color: z.string().max(255),

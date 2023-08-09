@@ -6,23 +6,21 @@ import { SalesAd } from "../../entities/salesAd.entity";
 
 export const filter = async (toListing: TListArgument, filterData?: TFilterSalesAd): Promise<TPaginateSalesAdResponse> => {
     let objectToListing = toListing.objectToListing;
+    const objectSkipTake = { 
+        skip: objectToListing.skip,
+        take: objectToListing.take
+    };
     const page = toListing.page;
     const perPage = toListing.perPage;
-    let where = {};
 
     objectToListing = {
         relations: {
             salesImages: true,
         },
-        order: {
-            salesImages: {
-                created_at: "ASC"
-            }
-        },
-        ...objectToListing        
     };
     
     if (filterData) {
+        let where = {};
         const filterDataArray = Object.entries(filterData);
 
         filterDataArray.forEach(data => {
@@ -47,20 +45,22 @@ export const filter = async (toListing: TListArgument, filterData?: TFilterSales
         });
     }
 
-    let salesAd: SalesAd[] = await repositories.salesAdRepo.find(objectToListing);
+    let salesAd: SalesAd[] = await repositories.salesAdRepo.find(objectToListing);  
 
     salesAd = salesAd.map(saleAd => {return {...saleAd, price: saleAd.price / 100};});
 
     const salesAdCount: number = salesAd.length;
 
-    const prevPageUrl: string | null = `http://localhost:3000/salesAd?page=${page-1}&perPage=${perPage}`;
-    const nextPageUrl: string | null = `http://localhost:3000/salesAd?page=${page+1}&perPage=${perPage}`;
+    const paginatedResults = salesAd.slice(objectSkipTake.skip, objectSkipTake.skip! + objectSkipTake.take!);
+
+    const prevPageUrl: string | null = `http://localhost:3000/salesAd?page=${page-1}`;
+    const nextPageUrl: string | null = `http://localhost:3000/salesAd?page=${page+1}`;
 
     const listSalesAdReturn: TPaginateSalesAdResponse = {
         prevPage: page <= 1 ? null : prevPageUrl,
         nextPage: page * perPage >= salesAdCount ? null : nextPageUrl,
         count: salesAdCount,
-        data: salesAd
+        data: paginatedResults
     };
 
     return listSalesAdReturn;

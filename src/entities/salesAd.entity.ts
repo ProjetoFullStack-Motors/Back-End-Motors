@@ -19,8 +19,8 @@ class SalesAd extends BaseEntity {
     @Column({ type: "varchar", length: 255 })
     color: string;
 
-    @Column({ type: "enum", enum: Engine })
-    engine: Engine;
+    @Column({ type: "varchar", length: 255})
+    engine: string;
 
     @Column({ type: "text" })
     description: string;
@@ -44,7 +44,11 @@ class SalesAd extends BaseEntity {
     salesImages: SalesImages[];
 }
 
-@Entity("salesImages")
+@Entity("salesImages", {
+    orderBy: {
+        created_at: "ASC",
+    }
+})
 class SalesImages extends BaseEntity {
     @Column({ type: "text" })
     imageUrl: string;
