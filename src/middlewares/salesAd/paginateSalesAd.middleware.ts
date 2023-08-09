@@ -2,43 +2,28 @@
 import { NextFunction, Request, Response } from "express";
 import { FindManyOptions } from "typeorm";
 
-export const paginateListMovies = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+export const paginateSalesAd = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
     const querys = req.query;
+    const queryPage = querys.page;
     
     let page: number = 1;
-    let perPage: number = 12;
+    const perPage: number = 12;
 
-    const queryPage = querys.page;
-    const queryPerPage = querys.perPage;
-
-    if (queryPage && !queryPerPage) {
-        if (+queryPage > 0) {
-            page = +queryPage;
-        }
-    }
-    if (!queryPage && queryPerPage) {
-        if (+queryPerPage > 0 && +queryPerPage <= 5) {
-            perPage = +queryPerPage;
-        }
-    }
-    if (queryPage && queryPerPage) {
-        if (+queryPerPage > 0 && +queryPerPage <= 5) {
-            perPage = +queryPerPage;
-        }
+    if (queryPage) {
         if (+queryPage > 0) {
             page = +queryPage;
         }
     }
 
-    const objectoToListing: FindManyOptions = {
+    const objectToListing: FindManyOptions = {
         skip: page <= 1 ? 0 : ((page - 1 )*perPage),
-        take: perPage > 12 ? 12 : perPage
+        take: perPage
     };
 
     res.locals.toListing = {
-        objectToListing: objectoToListing,
+        objectToListing: objectToListing,
         page: page,
-        perPage: perPage
+        perPage: perPage,
     };
 
     return next();

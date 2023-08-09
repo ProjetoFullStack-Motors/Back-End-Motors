@@ -44,7 +44,11 @@ class SalesAd extends BaseEntity {
     salesImages: SalesImages[];
 }
 
-@Entity("salesImages")
+@Entity("salesImages", {
+    orderBy: {
+        created_at: "ASC",
+    }
+})
 class SalesImages extends BaseEntity {
     @Column({ type: "text" })
     imageUrl: string;
