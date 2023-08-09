@@ -19,8 +19,8 @@ class SalesAd extends BaseEntity {
     @Column({ type: "varchar", length: 255 })
     color: string;
 
-    @Column({ type: "enum", enum: Engine })
-    engine: Engine;
+    @Column({ type: "varchar", length: 255})
+    engine: string;
 
     @Column({ type: "text" })
     description: string;
