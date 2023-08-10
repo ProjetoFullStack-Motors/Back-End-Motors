@@ -13,7 +13,7 @@ salesAd.post(
     controllers.salesAd.create
 );
 salesAd.post("/seed", seedController);
-salesAd.get("", middlewares.paginateSalesAd, controllers.salesAd.readAll);
+salesAd.get("", controllers.salesAd.readAll);
 salesAd.post(
     "/filter",
     middlewares.paginateSalesAd,

@@ -19,7 +19,7 @@ class SalesAd extends BaseEntity {
     @Column({ type: "varchar", length: 255 })
     color: string;
 
-    @Column({ type: "varchar", length: 255})
+    @Column({ type: "varchar", length: 255 })
     engine: string;
 
     @Column({ type: "text" })
@@ -47,7 +47,7 @@ class SalesAd extends BaseEntity {
 @Entity("salesImages", {
     orderBy: {
         created_at: "ASC",
-    }
+    },
 })
 class SalesImages extends BaseEntity {
     @Column({ type: "text" })

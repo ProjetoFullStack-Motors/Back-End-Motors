@@ -18,13 +18,15 @@ const create = async (req: Request, res: Response): Promise<Response> => {
 };
 
 const readAll = async (req: Request, res: Response): Promise<Response> => {
-    const toListing = res.locals.toListing;
-    const salesAd = await services.salesAd.readAll(toListing);
+    const salesAd = await services.salesAd.readAll();
 
     return res.status(200).json(salesAd);
 };
 
-const filterReadAll = async (req: Request, res: Response): Promise<Response> => {
+const filterReadAll = async (
+    req: Request,
+    res: Response
+): Promise<Response> => {
     const filterData = req.body;
     const toListing = res.locals.toListing;
     const salesAd = await services.salesAd.filter(toListing, filterData);
@@ -93,7 +95,7 @@ const salesAd = {
     deleteById,
     createImage,
     updateImageById,
-    filterReadAll
+    filterReadAll,
 };
 
 export default salesAd;
