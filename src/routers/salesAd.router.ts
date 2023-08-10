@@ -14,7 +14,11 @@ salesAd.post(
 );
 salesAd.post("/seed", seedController);
 salesAd.get("", middlewares.paginateSalesAd, controllers.salesAd.readAll);
-salesAd.get("/filter", middlewares.paginateSalesAd, controllers.salesAd.filterReadAll);
+salesAd.post(
+    "/filter",
+    middlewares.paginateSalesAd,
+    controllers.salesAd.filterReadAll
+);
 salesAd.get("/:id", middlewares.existsSalesAdId, controllers.salesAd.readById);
 salesAd.patch(
     "/:id",
