@@ -1,14 +1,21 @@
 import { Between } from "typeorm";
 
-import { TFilterSalesAd, TListArgument, TPaginateSalesAdResponse } from "../../interfaces/salesAd.interface";
+import {
+    TFilterSalesAd,
+    TListArgument,
+    TPaginateSalesAdResponse,
+} from "../../interfaces/salesAd.interface";
 import repositories from "../../utils";
 import { SalesAd } from "../../entities/salesAd.entity";
 
-const filter = async (toListing: TListArgument, filterData?: TFilterSalesAd): Promise<TPaginateSalesAdResponse> => {
+const filter = async (
+    toListing: TListArgument,
+    filterData?: TFilterSalesAd
+): Promise<TPaginateSalesAdResponse> => {
     let objectToListing = toListing.objectToListing;
-    const objectSkipTake = { 
+    const objectSkipTake = {
         skip: objectToListing.skip,
-        take: objectToListing.take
+        take: objectToListing.take,
     };
     const page = toListing.page;
     const perPage = toListing.perPage;
@@ -18,12 +25,12 @@ const filter = async (toListing: TListArgument, filterData?: TFilterSalesAd): Pr
             salesImages: true,
         },
     };
-    
+
     if (filterData) {
         let where = {};
         const filterDataArray = Object.entries(filterData);
 
-        filterDataArray.forEach(data => {
+        filterDataArray.forEach((data) => {
             if (data[1] instanceof Object) {
                 const rangeArray = Object.entries(data[1]!);
                 let fieldName: string | string[] = data[0].split("");
@@ -32,35 +39,49 @@ const filter = async (toListing: TListArgument, filterData?: TFilterSalesAd): Pr
 
                 where = {
                     ...where,
-                    [fieldName]: Between((rangeArray[0][1])  * 100, (rangeArray[1][1]) * 100)
+                    [fieldName]: Between(
+                        rangeArray[0][1] * 100,
+                        rangeArray[1][1] * 100
+                    ),
                 };
-                objectToListing = {...objectToListing, where: where};
+                objectToListing = { ...objectToListing, where: where };
             } else {
                 where = {
                     ...where,
-                    [data[0]]: data[1]
+                    [data[0]]: data[1],
                 };
-                objectToListing = {...objectToListing, where: where};
+                objectToListing = { ...objectToListing, where: where };
             }
         });
     }
 
-    let salesAd: SalesAd[] = await repositories.salesAdRepo.find(objectToListing);  
+    let salesAd: SalesAd[] = await repositories.salesAdRepo.find(
+        objectToListing
+    );
 
-    salesAd = salesAd.map(saleAd => {return {...saleAd, price: saleAd.price / 100};});
+    salesAd = salesAd.map((saleAd) => {
+        return { ...saleAd, price: saleAd.price / 100 };
+    });
 
     const salesAdCount: number = salesAd.length;
 
-    const paginatedResults = salesAd.slice(objectSkipTake.skip, objectSkipTake.skip! + objectSkipTake.take!);
+    const paginatedResults = salesAd.slice(
+        objectSkipTake.skip,
+        objectSkipTake.skip! + objectSkipTake.take!
+    );
 
-    const prevPageUrl: string | null = `http://localhost:3000/salesAd?page=${page-1}`;
-    const nextPageUrl: string | null = `http://localhost:3000/salesAd?page=${page+1}`;
+    const prevPageUrl:
+        | string
+        | null = `http://localhost:3000/salesAd/filter?page=${page - 1}`;
+    const nextPageUrl:
+        | string
+        | null = `http://localhost:3000/salesAd/filter?page=${page + 1}`;
 
     const listSalesAdReturn: TPaginateSalesAdResponse = {
         prevPage: page <= 1 ? null : prevPageUrl,
         nextPage: page * perPage >= salesAdCount ? null : nextPageUrl,
         count: salesAdCount,
-        data: paginatedResults
+        data: paginatedResults,
     };
 
     return listSalesAdReturn;
