@@ -32,6 +32,12 @@ const filterReadAll = async (req: Request, res: Response): Promise<Response> => 
     return res.status(200).json(salesAd);
 };
 
+const findExistentValues = async (req: Request, res: Response): Promise<Response> => {
+    const values = await services.salesAd.findExistentValues();
+
+    return res.json(values);
+};
+
 const readById = async (req: Request, res: Response): Promise<Response> => {
     const salesAdId = req.params.id;
 
@@ -93,7 +99,8 @@ const salesAd = {
     deleteById,
     createImage,
     updateImageById,
-    filterReadAll
+    filterReadAll,
+    findExistentValues
 };
 
 export default salesAd;

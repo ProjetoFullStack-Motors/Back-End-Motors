@@ -19,6 +19,7 @@ salesAd.post(
     middlewares.paginateSalesAd,
     controllers.salesAd.filterReadAll
 );
+salesAd.get("/values", controllers.salesAd.findExistentValues);
 salesAd.get("/:id", middlewares.existsSalesAdId, controllers.salesAd.readById);
 salesAd.patch(
     "/:id",
