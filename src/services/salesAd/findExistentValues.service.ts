@@ -1,49 +1,25 @@
 import repositories from "../../utils";
 
+type TValuesObj = {
+    [key: string]: string[]
+}
+
 const findExistentValues = async () => {
-    const colorsValues = await repositories.salesAdRepo
-        .createQueryBuilder("salesAd")
-        .distinctOn(["salesAd.color"])
-        .select("salesAd.color")
-        .getRawMany();
+    const values = ["engine", "color", "brand", "model", "year"];
+    const valuesObj: TValuesObj  = {};
 
-    const brandsValues = await repositories.salesAdRepo
-        .createQueryBuilder("salesAd")
-        .distinctOn(["salesAd.brand"])
-        .select("salesAd.brand")
-        .getRawMany();
+    for (const value of values) {
+        const columName = `salesAd_${value}`;
+        const queryResult = await repositories.salesAdRepo
+            .createQueryBuilder("salesAd")
+            .distinctOn([`salesAd.${value}`])
+            .select(`salesAd.${value}`)
+            .getRawMany();
 
-    const modelsValues = await repositories.salesAdRepo
-        .createQueryBuilder("salesAd")
-        .distinctOn(["salesAd.model"])
-        .select("salesAd.model")
-        .getRawMany();
+        valuesObj[value] = queryResult.map((item) => item[columName]);            
+    }
 
-    const yearsValues = await repositories.salesAdRepo
-        .createQueryBuilder("salesAd")
-        .distinctOn(["salesAd.year"])
-        .select("salesAd.year")
-        .getRawMany();
-
-    const enginesValues = await repositories.salesAdRepo
-        .createQueryBuilder("salesAd")
-        .distinctOn(["salesAd.engine"])
-        .select("salesAd.engine")
-        .getRawMany();
-
-    const colors = colorsValues.map((color) => color.salesAd_color);
-    const brands = brandsValues.map((brand) => brand.salesAd_brand);
-    const models = modelsValues.map((model) => model.salesAd_model);
-    const years = yearsValues.map((year) => year.salesAd_year);
-    const engines = enginesValues.map((engine) => engine.salesAd_engine);
-
-    return {
-        engines,
-        colors,
-        brands,
-        models,
-        years,
-    };
+    return valuesObj;
 };
 
 export default findExistentValues;
