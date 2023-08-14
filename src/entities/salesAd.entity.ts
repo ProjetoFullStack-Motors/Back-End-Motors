@@ -1,7 +1,7 @@
 import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
 
 import { BaseEntity } from "./baseEntity.entity";
-import { User } from "./users.entitie";
+import { User } from "./users.entity";
 
 export enum Engine {
     flex = "flex",

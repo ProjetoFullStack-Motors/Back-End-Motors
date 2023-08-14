@@ -22,7 +22,7 @@ class User extends BaseEntity {
     firstName: string;
 
     @Column({ type: "varchar", length: 255 })
-    lasName: string;
+    lastName: string;
 
     @Column({ type: "varchar", length: 255, unique: true })
     email: string;
@@ -39,11 +39,11 @@ class User extends BaseEntity {
     @Column({ type: "text" })
     description: string;
 
-    @Column({ type: "varchar", length: 14, unique: true })
+    @Column({ type: "text" })
     userImage: string;
 
     @Column({ type: "enum", enum: Role })
-    role: Role;
+    role: string;
 
     @OneToMany(() => SalesAd, (sales) => sales.user)
     sales: SalesAd[];
