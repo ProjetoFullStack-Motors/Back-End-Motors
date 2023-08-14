@@ -19,7 +19,7 @@ class Address extends BaseEntity {
     @Column({ type: "varchar", length: 255 })
     addressComplement: string | null | undefined;
 
-    @OneToOne(() => User, (user) => user.address)
+    @OneToOne(() => User, (user) => user.address, { onDelete: "CASCADE" })
     @JoinColumn()
     user: User;
 }
