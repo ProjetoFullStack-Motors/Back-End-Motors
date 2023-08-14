@@ -4,10 +4,10 @@ import salesAd from "./salesAd";
 import users from "./users";
 
 const middlewares = {
-	...shared,
-	...addresses,
-	...salesAd,
-	...users
+    ...shared,
+    ...addresses,
+    ...salesAd,
+    ...users,
 };
 
 export default middlewares;

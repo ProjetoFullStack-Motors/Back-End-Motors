@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, OneToOne } from "typeorm";
 import { BaseEntity } from "./baseEntity.entity";
-import { User } from "./users.entitie";
+import { User } from "./users.entity";
 
 @Entity("addresses")
 class Address extends BaseEntity {
@@ -16,7 +16,7 @@ class Address extends BaseEntity {
     @Column({ type: "integer" })
     addressNumber: number;
 
-    @Column({ type: "varchar", length: 255 })
+    @Column({ type: "varchar", length: 255, nullable: true })
     addressComplement: string | null | undefined;
 
     @OneToOne(() => User, (user) => user.address, { onDelete: "CASCADE" })

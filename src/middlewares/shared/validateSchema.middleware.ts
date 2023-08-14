@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import { NextFunction, Request, Response } from "express";
 import { ZodTypeAny } from "zod";
 
