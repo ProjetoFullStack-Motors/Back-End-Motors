@@ -1,0 +1,54 @@
+import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany } from "typeorm";
+import { BaseEntity } from "./baseEntity.entity";
+import { getRounds, hashSync } from "bcryptjs";
+import { SalesAd } from "./salesAd.entity";
+
+export enum Role {
+    seller = "seller",
+    buyer = "buyer",
+}
+
+@Entity("users")
+class User extends BaseEntity {
+    @Column({ type: "varchar", length: 255 })
+    firstName: string;
+
+    @Column({ type: "varchar", length: 255 })
+    lasName: string;
+
+    @Column({ type: "varchar", length: 255, unique: true })
+    email: string;
+
+    @Column({ type: "varchar", length: 255 })
+    password: string;
+
+    @Column({ type: "varchar", length: 11, unique: true })
+    cpf: string;
+
+    @Column({ type: "varchar", length: 14, unique: true })
+    cellphone: string;
+
+    @Column({ type: "text" })
+    description: string;
+
+    @Column({ type: "varchar", length: 14, unique: true })
+    userImage: string;
+
+    @Column({ type: "enum", enum: Role })
+    role: Role;
+
+    @OneToMany(() => SalesAd, (sales) => sales.user)
+    sales: SalesAd[];
+
+    @BeforeInsert()
+    @BeforeUpdate()
+    encriptedPass() {
+        const passHashed: number = getRounds(this.password);
+
+        if (!passHashed) {
+            this.password = hashSync(this.password, 10);
+        }
+    }
+}
+
+export { User };

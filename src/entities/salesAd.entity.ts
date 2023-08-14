@@ -1,6 +1,7 @@
 import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
 
 import { BaseEntity } from "./baseEntity.entity";
+import { User } from "./users.entitie";
 
 export enum Engine {
     flex = "flex",
@@ -19,7 +20,7 @@ class SalesAd extends BaseEntity {
     @Column({ type: "varchar", length: 255 })
     color: string;
 
-    @Column({ type: "varchar", length: 255})
+    @Column({ type: "varchar", length: 255 })
     engine: string;
 
     @Column({ type: "text" })
@@ -42,12 +43,15 @@ class SalesAd extends BaseEntity {
 
     @OneToMany(() => SalesImages, (salesImage) => salesImage.salesAd)
     salesImages: SalesImages[];
+
+    @ManyToOne(() => User, (user) => user.sales, { onDelete: "CASCADE" })
+    user: User;
 }
 
 @Entity("salesImages", {
     orderBy: {
         created_at: "ASC",
-    }
+    },
 })
 class SalesImages extends BaseEntity {
     @Column({ type: "text" })
