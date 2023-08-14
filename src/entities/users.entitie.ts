@@ -1,7 +1,15 @@
-import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany } from "typeorm";
+import {
+    BeforeInsert,
+    BeforeUpdate,
+    Column,
+    Entity,
+    OneToMany,
+    OneToOne,
+} from "typeorm";
 import { BaseEntity } from "./baseEntity.entity";
 import { getRounds, hashSync } from "bcryptjs";
 import { SalesAd } from "./salesAd.entity";
+import { Address } from "./addresses.entity";
 
 export enum Role {
     seller = "seller",
@@ -39,6 +47,9 @@ class User extends BaseEntity {
 
     @OneToMany(() => SalesAd, (sales) => sales.user)
     sales: SalesAd[];
+
+    @OneToOne(() => Address, (address) => address.user)
+    address: Address;
 
     @BeforeInsert()
     @BeforeUpdate()
