@@ -23,6 +23,7 @@ const filter = async (
     objectToListing = {
         relations: {
             salesImages: true,
+            user: true,
         },
     };
 

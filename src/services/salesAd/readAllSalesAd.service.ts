@@ -16,6 +16,7 @@ const readAll = async (
     objectToListing = {
         relations: {
             salesImages: true,
+            user: true,
         },
         ...objectToListing,
     };
