@@ -7,21 +7,22 @@ const readById = async (salesAdId: string): Promise<SalesAd> => {
             id: salesAdId,
         },
         relations: {
-            salesImages: true
+            salesImages: true,
+            user: true,
         },
         order: {
             salesImages: {
-                created_at: "ASC"
-            }
-        }
+                created_at: "ASC",
+            },
+        },
     });
 
     saleAd = {
         ...saleAd!,
-        price: saleAd!.price / 100
+        price: saleAd!.price / 100,
     };
 
-    return saleAd; 
+    return saleAd;
 };
 
 export default readById;
