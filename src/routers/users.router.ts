@@ -13,4 +13,10 @@ users.post(
     controllers.users.create
 );
 
+users.post(
+    "/login",
+    middlewares.validateSchema(schemas.users.LoginSchema),
+    controllers.users.login
+);
+
 export default users;
