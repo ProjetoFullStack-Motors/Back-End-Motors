@@ -1,7 +1,15 @@
-import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany } from "typeorm";
+import {
+    BeforeInsert,
+    BeforeUpdate,
+    Column,
+    Entity,
+    OneToMany,
+    OneToOne,
+} from "typeorm";
 import { BaseEntity } from "./baseEntity.entity";
 import { getRounds, hashSync } from "bcryptjs";
 import { SalesAd } from "./salesAd.entity";
+import { Address } from "./addresses.entity";
 
 export enum Role {
     seller = "seller",
@@ -14,7 +22,7 @@ class User extends BaseEntity {
     firstName: string;
 
     @Column({ type: "varchar", length: 255 })
-    lasName: string;
+    lastName: string;
 
     @Column({ type: "varchar", length: 255, unique: true })
     email: string;
@@ -31,14 +39,17 @@ class User extends BaseEntity {
     @Column({ type: "text" })
     description: string;
 
-    @Column({ type: "varchar", length: 14, unique: true })
+    @Column({ type: "text" })
     userImage: string;
 
     @Column({ type: "enum", enum: Role })
-    role: Role;
+    role: string;
 
     @OneToMany(() => SalesAd, (sales) => sales.user)
     sales: SalesAd[];
+
+    @OneToOne(() => Address, (address) => address.user)
+    address: Address;
 
     @BeforeInsert()
     @BeforeUpdate()
