@@ -1,5 +1,6 @@
 import { z } from "zod";
 import addresses from "./addresses.schemas";
+import salesAd from "./salesAd.schemas";
 
 const userSchema = z.object({
     id: z.string(),
@@ -14,11 +15,13 @@ const userSchema = z.object({
     role: z.enum(["seller", "buyer"]),
     created_at: z.union([z.date(), z.string()]),
     address: addresses.addressSchema,
+    sales: z.optional(salesAd.responseArray),
 });
 
 const userRequestSchema = userSchema.omit({
     id: true,
     created_at: true,
+    sales: true,
 });
 
 const userResponseSchema = userSchema.omit({
@@ -30,11 +33,17 @@ const LoginSchema = z.object({
     password: z.string(),
 });
 
+const userWithoutAddress = userSchema.omit({ password: true, address: true });
+
+const userWithoutSales = userResponseSchema.omit({ sales: true });
+
 const users = {
     userSchema,
     userRequestSchema,
     userResponseSchema,
     LoginSchema,
+    userWithoutAddress,
+    userWithoutSales,
 };
 
 export default users;

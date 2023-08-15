@@ -1,7 +1,9 @@
-import existsUserInfosMiddleware from "./existsUserInfos.middleware";
+import existsUserInfos from "./existsUserInfos.middleware";
+import ensureIsSeller from "./ensureIsSeller.middleware";
 
 const users = {
-    existsUserInfosMiddleware,
+    existsUserInfos,
+    ensureIsSeller,
 };
 
 export default users;

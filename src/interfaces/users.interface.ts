@@ -9,4 +9,15 @@ type TUserResponse = z.infer<typeof schemas.users.userResponseSchema>;
 
 type TLogin = z.infer<typeof schemas.users.LoginSchema>;
 
-export { TUser, TUserRequest, TUserResponse, TLogin };
+type TUserWithoutAddress = z.infer<typeof schemas.users.userWithoutAddress>;
+
+type TUserWithoutSales = z.infer<typeof schemas.users.userWithoutSales>;
+
+export {
+    TUser,
+    TUserRequest,
+    TUserResponse,
+    TLogin,
+    TUserWithoutAddress,
+    TUserWithoutSales,
+};

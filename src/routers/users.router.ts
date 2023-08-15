@@ -8,8 +8,8 @@ const users: Router = Router();
 users.post(
     "",
     middlewares.validateSchema(schemas.users.userRequestSchema),
-    middlewares.existsUserInfosMiddleware,
-    middlewares.existsAddressMiddleware,
+    middlewares.existsUserInfos,
+    middlewares.existsAddress,
     controllers.users.create
 );
 
@@ -18,5 +18,7 @@ users.post(
     middlewares.validateSchema(schemas.users.LoginSchema),
     controllers.users.login
 );
+
+users.get("/:id", controllers.users.retrieveUserSales);
 
 export default users;

@@ -12,7 +12,9 @@ import { SalesAd } from "../entities/salesAd.entity";
 const create = async (req: Request, res: Response): Promise<Response> => {
     const salesAdData: TSalesAdRequest = req.body;
 
-    const newSalesAd = await services.salesAd.create(salesAdData);
+    const id = res.locals.userId;
+
+    const newSalesAd = await services.salesAd.create(salesAdData, id);
 
     return res.status(201).json(newSalesAd);
 };
@@ -24,7 +26,10 @@ const readAll = async (req: Request, res: Response): Promise<Response> => {
     return res.status(200).json(salesAd);
 };
 
-const filterReadAll = async (req: Request, res: Response): Promise<Response> => {
+const filterReadAll = async (
+    req: Request,
+    res: Response
+): Promise<Response> => {
     const filterData = req.body;
     const toListing = res.locals.toListing;
     const salesAd = await services.salesAd.filter(toListing, filterData);
@@ -32,7 +37,10 @@ const filterReadAll = async (req: Request, res: Response): Promise<Response> => 
     return res.status(200).json(salesAd);
 };
 
-const findExistentValues = async (req: Request, res: Response): Promise<Response> => {
+const findExistentValues = async (
+    req: Request,
+    res: Response
+): Promise<Response> => {
     const values = await services.salesAd.findExistentValues();
 
     return res.json(values);
@@ -100,7 +108,7 @@ const salesAd = {
     createImage,
     updateImageById,
     filterReadAll,
-    findExistentValues
+    findExistentValues,
 };
 
 export default salesAd;

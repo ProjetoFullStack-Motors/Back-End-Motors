@@ -16,8 +16,20 @@ const login = async (req: Request, res: Response): Promise<Response> => {
     return res.json({ token });
 };
 
+const retrieveUserSales = async (
+    req: Request,
+    res: Response
+): Promise<Response> => {
+    const id = req.params.id;
+
+    const user = await services.users.retrieveUserSales(id);
+
+    return res.json(user);
+};
+
 const users = {
     create,
     login,
+    retrieveUserSales,
 };
 export default users;
