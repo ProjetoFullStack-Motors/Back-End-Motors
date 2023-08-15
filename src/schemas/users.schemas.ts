@@ -25,10 +25,16 @@ const userResponseSchema = userSchema.omit({
     password: true,
 });
 
+const LoginSchema = z.object({
+    email: z.string(),
+    password: z.string(),
+});
+
 const users = {
     userSchema,
     userRequestSchema,
     userResponseSchema,
+    LoginSchema,
 };
 
 export default users;
