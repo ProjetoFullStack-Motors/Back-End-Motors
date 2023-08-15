@@ -25,24 +25,32 @@ salesAd.get("/values", controllers.salesAd.findExistentValues);
 salesAd.get("/:id", middlewares.existsSalesAdId, controllers.salesAd.readById);
 salesAd.patch(
     "/:id",
+    middlewares.ensureAuth,
     middlewares.existsSalesAdId,
+    middlewares.ensureIsOwner,
     middlewares.validateSchema(schemas.salesAd.update),
     controllers.salesAd.updateById
 );
 salesAd.delete(
     "/:id",
+    middlewares.ensureAuth,
     middlewares.existsSalesAdId,
+    middlewares.ensureIsOwner,
     controllers.salesAd.deleteById
 );
 
 salesAd.post(
     "/:id/images",
+    middlewares.ensureAuth,
     middlewares.existsSalesAdId,
+    middlewares.ensureIsOwner,
     controllers.salesAd.createImage
 );
 salesAd.patch(
     "/:id/images/:imageId",
+    middlewares.ensureAuth,
     middlewares.existsSalesAdId,
+    middlewares.ensureIsOwner,
     middlewares.existsSalesImageId,
     middlewares.validateSchema(schemas.salesAd.imagesRequest),
     controllers.salesAd.updateImageById
