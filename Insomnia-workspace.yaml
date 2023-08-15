@@ -1,72 +1,43 @@
 _type: export
 __export_format: 4
-__export_date: 2023-08-09T19:24:08.327Z
+__export_date: 2023-08-15T15:28:55.958Z
 __export_source: insomnia.desktop.app:v2023.4.0
 resources:
-  - _id: req_caee5b8727734f72b512ee15b78e1d0e
-    parentId: fld_8e4bf6e004b240cc8a750a6517b83bd4
-    modified: 1691593640608
-    created: 1691587599967
-    url: "{{ _.baseUrl }}/salesAd/seed"
-    name: Seed SalesAd
-    description: ""
-    method: POST
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1691225363896.4688
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: fld_8e4bf6e004b240cc8a750a6517b83bd4
-    parentId: wrk_595ebb21ab1d45528cefb7e84adc2ad7
-    modified: 1691587885431
-    created: 1691587885431
-    name: Seeds
-    description: ""
-    environment: {}
-    environmentPropertyOrder: null
-    metaSortKey: -1691587885431
-    _type: request_group
-  - _id: wrk_595ebb21ab1d45528cefb7e84adc2ad7
-    parentId: null
-    modified: 1691504450913
-    created: 1691504450913
-    name: BackEnd-Motors
-    description: ""
-    scope: design
-    _type: workspace
-  - _id: req_eb4dbc0f38254fd58586a879a9ddd532
-    parentId: fld_82832d9ea2dd4064ac302768b4c6803e
-    modified: 1691585107014
-    created: 1691585041071
-    url: "{{ _.baseUrl }}/salesAd"
-    name: Error - Create
+  - _id: req_2e70809d008c468c9a2ede4be80083e5
+    parentId: fld_9cd571fc6457409680a2d0830ff1ba5b
+    modified: 1692106832148
+    created: 1692106767642
+    url: "{{ _.baseUrl }}/users/"
+    name: create
     description: ""
     method: POST
     body:
       mimeType: application/json
       text: |-
         {
-        		"brand": [],
-        		"year": "222dad3a1241",
-        	  "mileage": "dawedawdw",
-        		"engine": {},
-        		"color": "d13241",
-        	  "isGoodPrice": 123
+        	"firstName": "Roger",
+        	"lastName": "Magalhães",
+        	"email": "rogegrmferr@mail.com",
+        	"password": "123456",
+        	"cpf": "12345671122",
+        	"cellphone": "3199199991226",
+        	"description": "Sou mineiro uai",
+        	"userImage": "não tenho",
+        	"role": "seller",
+        	"address": {
+        		"cep": "12345670",
+        		"city": "Tão Tão Distante",
+        		"street": "rua primeira",
+        		"addressNumber": 223,
+        		"addressComplement": "casa"
         	}
+        }
     parameters: []
     headers:
       - name: Content-Type
         value: application/json
     authentication: {}
-    metaSortKey: -1691194696932.4375
+    metaSortKey: -1691681394034.25
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true
@@ -75,29 +46,66 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: fld_82832d9ea2dd4064ac302768b4c6803e
-    parentId: fld_54c206e6270744deb6a0e54949225ed6
-    modified: 1691585030784
-    created: 1691585030784
-    name: Errors
+  - _id: fld_9cd571fc6457409680a2d0830ff1ba5b
+    parentId: wrk_68be9aab3eeb4d4692411f4c586984ee
+    modified: 1692106750218
+    created: 1692106750218
+    name: Users
     description: ""
     environment: {}
     environmentPropertyOrder: null
-    metaSortKey: -1691585030784
+    metaSortKey: -1692106750219
     _type: request_group
-  - _id: fld_54c206e6270744deb6a0e54949225ed6
-    parentId: wrk_595ebb21ab1d45528cefb7e84adc2ad7
-    modified: 1691419586901
-    created: 1691419586901
-    name: SalesAd
+  - _id: wrk_68be9aab3eeb4d4692411f4c586984ee
+    parentId: null
+    modified: 1691517254810
+    created: 1691517254810
+    name: BackEnd-Motors
+    description: ""
+    scope: design
+    _type: workspace
+  - _id: req_19db78ee43ba4dfc826121907aeb866f
+    parentId: fld_3924b64c01b94609943b60aa3cb9afb5
+    modified: 1692113100033
+    created: 1692106757208
+    url: "{{ _.baseUrl }}/users/login"
+    name: login
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"email": "rogegrmferr@mail.com",
+        	"password": "123456"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1692111503235
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_3924b64c01b94609943b60aa3cb9afb5
+    parentId: fld_9cd571fc6457409680a2d0830ff1ba5b
+    modified: 1692113116087
+    created: 1692113085244
+    name: Login
     description: ""
     environment: {}
     environmentPropertyOrder: null
-    metaSortKey: -1691419586901
+    metaSortKey: -1691681393984.25
     _type: request_group
-  - _id: req_d7b07f09b61841e0a1f0a53f61b523f6
-    parentId: fld_54c206e6270744deb6a0e54949225ed6
-    modified: 1691527218380
+  - _id: req_f9e6ddef50754409bc3bf89603437592
+    parentId: fld_0168b6002cb54b94b36d927d2b869993
+    modified: 1691506972763
     created: 1691419595379
     url: "{{ _.baseUrl }}/salesAd"
     name: Create
@@ -108,12 +116,12 @@ resources:
       text: >-
         {
         		"model": "bolt2 ev premier 203cv (elétrico)",
-        		"brand": "volkswagem",
-        		"year": "2017",
-        	  "mileage": 70000,
+        		"brand": "chevrolet",
+        		"year": "2022/01/01",
+        	  "mileage": 100000,
         		"engine": "flex",
-        		"price": 125000,
-        		"color": "cinza",
+        		"price": 282045,
+        		"color": "branco",
         	  "isGoodPrice": true,
         		"description":"Opcionais: Porta-copos, Farol de neblina, Direção Elétrica, Comando de áudio no volante, Banco bi-partido, Controle de estabilidade, Distribuição eletrônica de frenagem, Kit Multimídia, MP3 Player, Pára-choques na cor do veículo."
         	}
@@ -131,20 +139,26 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: req_807e4fdcf88e49b4b63a7a97336110b4
-    parentId: fld_54c206e6270744deb6a0e54949225ed6
-    modified: 1691605746806
+  - _id: fld_0168b6002cb54b94b36d927d2b869993
+    parentId: wrk_68be9aab3eeb4d4692411f4c586984ee
+    modified: 1691419586901
+    created: 1691419586901
+    name: SalesAd
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1691419586901
+    _type: request_group
+  - _id: req_3d2d1ca36af8409cb136fd6ad39d2017
+    parentId: fld_0168b6002cb54b94b36d927d2b869993
+    modified: 1691419682855
     created: 1691419680738
     url: "{{ _.baseUrl }}/salesAd"
     name: Read All
     description: ""
     method: GET
     body: {}
-    parameters:
-      - id: pair_3348329bffca423e816aa690e057dcc4
-        name: ""
-        value: ""
-        description: ""
+    parameters: []
     headers: []
     authentication: {}
     metaSortKey: -1691133363004.375
@@ -156,47 +170,11 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: req_9ccf341903464de6b90b65394077fd39
-    parentId: fld_54c206e6270744deb6a0e54949225ed6
-    modified: 1691608190723
-    created: 1691524378093
-    url: "{{ _.baseUrl }}/salesAd/filter"
-    name: Filter Read All
-    description: ""
-    method: GET
-    body:
-      mimeType: application/json
-      text: |-
-        {
-        	"rangePrice": {
-        		"minPrice": 0,
-        		"maxPrice": 500000
-        	}
-        }
-    parameters:
-      - id: pair_6523ae31050148e5838c2d029a9323de
-        name: page
-        value: "2"
-        description: ""
-        disabled: true
-    headers:
-      - name: Content-Type
-        value: application/json
-    authentication: {}
-    metaSortKey: -1691118029522.3594
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_a5776d5eeccb408a801bb125b636a194
-    parentId: fld_54c206e6270744deb6a0e54949225ed6
-    modified: 1691526198001
+  - _id: req_42abd537200c4e379b6a8b090878fc0f
+    parentId: fld_0168b6002cb54b94b36d927d2b869993
+    modified: 1691419713858
     created: 1691419712038
-    url: "{{ _.baseUrl }}/salesAd/{{ _.salesAdId }}"
+    url: "{{ _.baseUrl }}/salesAd/1"
     name: Read By Id
     description: ""
     method: GET
@@ -213,17 +191,26 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: req_9ea0fc20ce2f450d85e67314b9e0cf81
-    parentId: fld_54c206e6270744deb6a0e54949225ed6
-    modified: 1691419693858
+  - _id: req_9892bf744ab946b3bd42a4179ef75189
+    parentId: fld_0168b6002cb54b94b36d927d2b869993
+    modified: 1691514745040
     created: 1691419687406
-    url: "{{ _.baseUrl }}/salesAd/1"
+    url: "{{ _.baseUrl }}/salesAd/{{ _.salesAdId }}"
     name: Update
     description: ""
     method: PATCH
-    body: {}
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        		"price": 1,
+        		"color": "preto",
+        		"description":"Opcionais"
+        }
     parameters: []
-    headers: []
+    headers:
+      - name: Content-Type
+        value: application/json
     authentication: {}
     metaSortKey: -1691072029076.3125
     isPrivate: false
@@ -234,11 +221,11 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: req_d8a4b925a081465dbc398a90b348f781
-    parentId: fld_54c206e6270744deb6a0e54949225ed6
-    modified: 1691419700999
+  - _id: req_b1158caf8e7b4ec2847ef0e48f1e3d1d
+    parentId: fld_0168b6002cb54b94b36d927d2b869993
+    modified: 1691512133633
     created: 1691419699320
-    url: "{{ _.baseUrl }}/salesAd/1"
+    url: "{{ _.baseUrl }}/salesAd/999221c4-c0dc-47f6-844d-4cb9aecd5c55"
     name: Delete
     description: ""
     method: DELETE
@@ -255,9 +242,9 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: req_bfd34dde0a7d4ae0adffe2a4736049c0
-    parentId: fld_54c206e6270744deb6a0e54949225ed6
-    modified: 1691526970291
+  - _id: req_134e40893e1c42adb04f7c9e4eda550c
+    parentId: fld_0168b6002cb54b94b36d927d2b869993
+    modified: 1691506414647
     created: 1691419658131
     url: "{{ _.baseUrl }}/salesAd/{{ _.salesAdId }}/images"
     name: Create Image
@@ -265,9 +252,13 @@ resources:
     method: POST
     body:
       mimeType: application/json
-      text: |-
+      text: >-
         {
-        	"imageUrl":"image 3"
+
+        "imageUrl":"https://i0.statig.com.br/bancodeimagens/dd/tk/n2/ddtkn2m0bln7clhqhdqgcdes5.jpg",	
+
+        "principal": true
+
         }
     parameters: []
     headers:
@@ -283,19 +274,24 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: req_2abcda449ac847688e00c1af580f30d1
-    parentId: fld_54c206e6270744deb6a0e54949225ed6
-    modified: 1691595996510
+  - _id: req_691aeb0b819e4e808502b5951499a02e
+    parentId: fld_0168b6002cb54b94b36d927d2b869993
+    modified: 1691516769604
     created: 1691419722917
-    url: "{{ _.baseUrl }}/salesAd/{{ _.salesAdId }}/images/{{ _.salesImageId }}"
+    url: "{{ _.baseUrl }}/salesAd/{{ _.salesAdId
+      }}/images/2f95981e-7cec-4569-ae0c-b0ff75392c37"
     name: Update Image
     description: ""
     method: PATCH
     body:
       mimeType: application/json
-      text: |-
+      text: >-
         {
-        	"imageUrl": "url patchedddd 222222"
+
+        "imageUrl":"http://nissaninsider.co.uk/wp-content/uploads/2015/10/136272_1_5.jpg",	
+
+        "principal": true
+
         }
     parameters: []
     headers:
@@ -311,37 +307,37 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: env_c9047389b1864f1b98b8882075505a95
-    parentId: wrk_595ebb21ab1d45528cefb7e84adc2ad7
-    modified: 1691595989450
+  - _id: env_cfa22d8ed97045878b6e113b8091d9d6
+    parentId: wrk_68be9aab3eeb4d4692411f4c586984ee
+    modified: 1692112886252
     created: 1691419579648
     name: Base Environment
     data:
       baseUrl: http://localhost:3000
-      salesAdId: "{% response 'body', 'req_807e4fdcf88e49b4b63a7a97336110b4',
-        'b64::JC5kYXRhWzBdLmlk::46b', 'never', 60 %}"
-      salesImageId: "{% response 'body', 'req_807e4fdcf88e49b4b63a7a97336110b4',
-        'b64::JC5kYXRhWzBdLnNhbGVzSW1hZ2VzWzFdLmlk::46b', 'never', 60 %}"
+      salesAdId: "{% response 'body', 'req_7123cebd781f4693aa963e34286fad05',
+        'b64::JC5pZA==::46b', 'never', 60 %}"
+      token: "{% response 'body', 'req_19db78ee43ba4dfc826121907aeb866f',
+        'b64::JC50b2tlbg==::46b', 'never', 60 %}"
     dataPropertyOrder:
       "&":
         - baseUrl
         - salesAdId
-        - salesImageId
+        - token
     color: null
     isPrivate: false
     metaSortKey: 1691419579648
     _type: environment
-  - _id: jar_02482416ad2e4bb1a9cefd7b3d9bd4b5
-    parentId: wrk_595ebb21ab1d45528cefb7e84adc2ad7
+  - _id: jar_24a5ad8a502e44e8826e184d43e67cda
+    parentId: wrk_68be9aab3eeb4d4692411f4c586984ee
     modified: 1691419579649
     created: 1691419579649
     name: Default Jar
     cookies: []
     _type: cookie_jar
-  - _id: spc_d4d52d60bd0e478ebf937a75e8e7563f
-    parentId: wrk_595ebb21ab1d45528cefb7e84adc2ad7
-    modified: 1691504450916
-    created: 1691504450915
+  - _id: spc_7d7f363978c54d1f9260b0ebdde515b0
+    parentId: wrk_68be9aab3eeb4d4692411f4c586984ee
+    modified: 1691517254816
+    created: 1691517254814
     fileName: BackEnd-Motors
     contents: ""
     contentType: yaml
