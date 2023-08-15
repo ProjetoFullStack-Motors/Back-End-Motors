@@ -1,9 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import repositories from "../../utils";
-import { AppError } from "../shared/handlerErrors.middleware";
 import { Address } from "../../entities/addresses.entity";
 
-const existsAddressMiddleware = async (
+const existsAddress = async (
     req: Request,
     res: Response,
     next: NextFunction
@@ -18,10 +17,12 @@ const existsAddressMiddleware = async (
     });
 
     if (address) {
-        throw new AppError("Address already exists", 409);
+        return res.status(409).json({
+            message: "Address already exists",
+        });
     }
 
     return next();
 };
 
-export default existsAddressMiddleware;
+export default existsAddress;

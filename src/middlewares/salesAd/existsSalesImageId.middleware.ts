@@ -1,28 +1,34 @@
 import { NextFunction, Request, Response } from "express";
-
-import { TSalesAdResponse } from "../../interfaces/salesAd.interface";
 import repositories from "../../utils";
-import { AppError } from "../shared/handlerErrors.middleware";
 
 const existsSalesImageId = async (
     req: Request,
     res: Response,
     next: NextFunction
-): Promise<TSalesAdResponse | void> => {
+): Promise<Response | void> => {
     const salesAdId: string = req.params.id;
     const salesImageId: string = req.params.imageId;
 
-    const salesImage= await repositories.salesImageRepo.findOne({
+    const salesImage = await repositories.salesImageRepo.findOne({
         where: {
-            id: salesImageId
-        }, relations: {
-            salesAd: true
-        }
+            id: salesImageId,
+        },
+        relations: {
+            salesAd: true,
+        },
     });
 
-    if (!salesImage) throw new AppError("Sales Image not Found!", 404);
+    if (!salesImage) {
+        return res.status(404).json({
+            message: "Sales image not found!",
+        });
+    }
 
-    if (salesImage.salesAd.id !== salesAdId) throw new AppError("Image not related to Sale Ad", 403);
+    if (salesImage.salesAd.id !== salesAdId) {
+        return res.status(403).json({
+            message: "Image not related to Sale Ad",
+        });
+    }
 
     return next();
 };

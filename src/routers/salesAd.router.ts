@@ -9,6 +9,8 @@ const salesAd: Router = Router();
 
 salesAd.post(
     "",
+    middlewares.ensureAuth,
+    middlewares.ensureIsSeller,
     middlewares.validateSchema(schemas.salesAd.request),
     controllers.salesAd.create
 );

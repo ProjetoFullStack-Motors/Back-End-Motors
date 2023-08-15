@@ -1,9 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import repositories from "../../utils";
-import { AppError } from "../shared/handlerErrors.middleware";
 import { User } from "../../entities/users.entity";
 
-const existsUserInfosMiddleware = async (
+const existsUserInfos = async (
     req: Request,
     res: Response,
     next: NextFunction
@@ -23,22 +22,36 @@ const existsUserInfosMiddleware = async (
     });
 
     if (userEmail && userCell && userCpf) {
-        throw new AppError("Email, cellphone and CPF already exists", 409);
+        return res.status(409).json({
+            message: "Email, cellphone and CPF already exists",
+        });
     } else if (userCell && userEmail) {
-        throw new AppError("Cellphone and email already exists", 409);
+        return res.status(409).json({
+            message: "Cellphone and CPF already exists",
+        });
     } else if (userCpf && userEmail) {
-        throw new AppError("CPF and email already exists", 409);
+        return res.status(409).json({
+            message: "Email and CPF already exists",
+        });
     } else if (userCell && userCpf) {
-        throw new AppError("Cellphone and CPF already exists", 409);
+        return res.status(409).json({
+            message: "Cellphone and CPF already exists",
+        });
     } else if (userEmail) {
-        throw new AppError("Email already exists", 409);
+        return res.status(409).json({
+            message: "Email already exists",
+        });
     } else if (userCell) {
-        throw new AppError("Cellphone already exists", 409);
+        return res.status(409).json({
+            message: "Cellphone already exists",
+        });
     } else if (userCpf) {
-        throw new AppError("CPF already exists", 409);
+        return res.status(409).json({
+            message: "CPF already exists",
+        });
     }
 
     return next();
 };
 
-export default existsUserInfosMiddleware;
+export default existsUserInfos;

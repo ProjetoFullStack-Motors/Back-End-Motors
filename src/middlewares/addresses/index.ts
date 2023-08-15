@@ -1,5 +1,5 @@
-import existsAddressMiddleware from "./existsAddress.middleware";
+import existsAddress from "./existsAddress.middleware";
 
-const addresses = { existsAddressMiddleware };
+const addresses = { existsAddress };
 
 export default addresses;
