@@ -37,13 +37,13 @@ class User extends BaseEntity {
     cellphone: string;
 
     @Column({ type: "date" })
-    birthdate: string | Date;
+    birthdate: Date;
 
     @Column({ type: "text" })
     description: string;
 
     @Column({ type: "text", nullable: true })
-    userImage: string;
+    userImage: string | null | undefined;
 
     @Column({ type: "enum", enum: Role })
     role: string;
