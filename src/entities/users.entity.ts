@@ -36,10 +36,13 @@ class User extends BaseEntity {
     @Column({ type: "varchar", length: 14, unique: true })
     cellphone: string;
 
+    @Column({ type: "date" })
+    birthdate: string | Date;
+
     @Column({ type: "text" })
     description: string;
 
-    @Column({ type: "text" })
+    @Column({ type: "text", nullable: true })
     userImage: string;
 
     @Column({ type: "enum", enum: Role })
