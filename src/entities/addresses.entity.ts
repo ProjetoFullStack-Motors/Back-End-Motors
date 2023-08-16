@@ -7,6 +7,9 @@ class Address extends BaseEntity {
     @Column({ type: "varchar", length: 8 })
     cep: string;
 
+    @Column({ type: "varchar", length: 2 })
+    state: string;
+
     @Column({ type: "varchar", length: 255 })
     city: string;
 
