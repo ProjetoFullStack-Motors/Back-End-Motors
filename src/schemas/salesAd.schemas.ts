@@ -23,7 +23,7 @@ const response = z.object({
     description: z.string(),
     status: z.boolean().default(true),
     created_at: z.string(),
-    images: z.array(imagesRequest),
+    salesImages: z.array(imagesRequest),
 });
 
 const request = response.omit({
@@ -31,7 +31,17 @@ const request = response.omit({
     created_at: true,
 });
 
-const responseArray = response.array();
+const responseArray = z.array(response);
+
+const userTest = z.object({
+    firstName: z.string().max(255),
+    lastName: z.string().max(255),
+    userImage: z.string().nullish(),
+});
+
+const responseWithoutPass = response.extend({
+    user: userTest,
+});
 
 const update = z
     .object({
@@ -43,6 +53,13 @@ const update = z
     })
     .partial();
 
+const paginateSalesAdResponse = z.object({
+    prevPage: z.string().nullish(),
+    nextPage: z.string().nullish(),
+    count: z.number(),
+    data: z.array(responseWithoutPass),
+});
+
 const salesAd = {
     response,
     responseArray,
@@ -50,6 +67,8 @@ const salesAd = {
     update,
     imagesResponse,
     imagesRequest,
+    responseWithoutPass,
+    paginateSalesAdResponse,
 };
 
 export default salesAd;

@@ -1,8 +1,8 @@
 import { z } from "zod";
 import { DeepPartial, FindManyOptions } from "typeorm";
 
-import schemas from "../schemas";
 import { SalesAd } from "../entities/salesAd.entity";
+import schemas from "../schemas";
 
 type TSalesAdResponse = z.infer<typeof schemas.salesAd.response>;
 
@@ -29,7 +29,7 @@ type TSalesWithImages = {
     description: string;
     status: boolean;
     created_at: string;
-    images: TSalesImagesResponse[];
+    salesImages: TSalesImagesResponse[];
 };
 
 type TListArgument = {
@@ -37,6 +37,10 @@ type TListArgument = {
     page: number;
     perPage: number;
 };
+
+type TSalesAdResponseId = z.infer<typeof schemas.salesAd.responseWithoutPass>;
+
+type TPaginateSalesAd = z.infer<typeof schemas.salesAd.paginateSalesAdResponse>;
 
 type TPaginateSalesAdResponse = {
     prevPage: string | null;
@@ -76,4 +80,6 @@ export {
     TPaginateSalesAdResponse,
     TFilterSalesAd,
     TSalesWithImages,
+    TPaginateSalesAd,
+    TSalesAdResponseId,
 };

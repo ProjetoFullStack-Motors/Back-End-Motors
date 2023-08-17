@@ -3,15 +3,17 @@ import { Between } from "typeorm";
 import {
     TFilterSalesAd,
     TListArgument,
+    TPaginateSalesAd,
     TPaginateSalesAdResponse,
 } from "../../interfaces/salesAd.interface";
 import repositories from "../../utils";
 import { SalesAd } from "../../entities/salesAd.entity";
+import schemas from "../../schemas";
 
 const filter = async (
     toListing: TListArgument,
     filterData?: TFilterSalesAd
-): Promise<TPaginateSalesAdResponse> => {
+): Promise<TPaginateSalesAd> => {
     let objectToListing = toListing.objectToListing;
     const objectSkipTake = {
         skip: objectToListing.skip,
@@ -85,7 +87,7 @@ const filter = async (
         data: paginatedResults,
     };
 
-    return listSalesAdReturn;
+    return schemas.salesAd.paginateSalesAdResponse.parse(listSalesAdReturn);
 };
 
 export default filter;

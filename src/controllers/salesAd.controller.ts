@@ -4,9 +4,9 @@ import services from "../services";
 import {
     TSalesAdRequest,
     TSalesAdResponse,
+    TSalesAdResponseId,
     TSalesAdUpdate,
 } from "../interfaces/salesAd.interface";
-import { SalesAd } from "../entities/salesAd.entity";
 
 const create = async (req: Request, res: Response): Promise<Response> => {
     const salesAdData: TSalesAdRequest = req.body;
@@ -48,7 +48,9 @@ const findExistentValues = async (
 const readById = async (req: Request, res: Response): Promise<Response> => {
     const salesAdId = req.params.id;
 
-    const saleAd: SalesAd = await services.salesAd.readById(salesAdId);
+    const saleAd: TSalesAdResponseId = await services.salesAd.readById(
+        salesAdId
+    );
 
     return res.status(200).json(saleAd);
 };
