@@ -15,14 +15,15 @@ const retrieveUserSales = async (
         },
         relations: {
             address: true,
-            sales: true,
+            sales: {
+                salesImages: true,
+            },
         },
     });
 
     if (!user) throw new AppError("User not found", 404);
 
     let userRes: TUserResponse;
-
     if (user.role === "seller") {
         userRes = schemas.users.userResponseSchema.parse(user);
     } else {

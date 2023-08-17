@@ -36,7 +36,7 @@ const LoginSchema = z.object({
 
 const userEmailSchema = LoginSchema.pick({
     email: true,
-});  
+});
 
 const userWithoutAddress = userSchema.omit({ password: true, address: true });
 
