@@ -23,6 +23,10 @@ const retrieveUserSales = async (
 
     if (!user) throw new AppError("User not found", 404);
 
+    user.sales = user.sales.map((saleAd) => {
+        return { ...saleAd, price: saleAd.price / 100 };
+    });
+
     let userRes: TUserResponse;
     if (user.role === "seller") {
         userRes = schemas.users.userResponseSchema.parse(user);
