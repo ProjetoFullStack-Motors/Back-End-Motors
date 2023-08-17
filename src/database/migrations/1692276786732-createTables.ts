@@ -1,11 +1,11 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class CreateTables1692191313324 implements MigrationInterface {
-    name = 'CreateTables1692191313324'
+export class CreateTables1692276786732 implements MigrationInterface {
+    name = 'CreateTables1692276786732'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE "salesAd" ("id" character varying NOT NULL, "created_at" text NOT NULL, "brand" character varying(255) NOT NULL, "model" character varying(255) NOT NULL, "color" character varying(255) NOT NULL, "engine" character varying(255) NOT NULL, "description" text NOT NULL, "year" character varying(4) NOT NULL, "mileage" integer NOT NULL, "price" integer NOT NULL, "status" boolean NOT NULL DEFAULT true, "isGoodPrice" boolean NOT NULL, "userId" character varying, CONSTRAINT "PK_5e76654310265ee7cbf2a0c8cdf" PRIMARY KEY ("id"))`);
-        await queryRunner.query(`CREATE TABLE "salesImages" ("id" character varying NOT NULL, "created_at" text NOT NULL, "imageUrl" text NOT NULL, "principal" boolean NOT NULL DEFAULT false, "salesAdId" character varying, CONSTRAINT "PK_da26936c1ff5c5508c1b4d8922c" PRIMARY KEY ("id"))`);
+        await queryRunner.query(`CREATE TABLE "salesImages" ("id" character varying NOT NULL, "created_at" text NOT NULL, "imageUrl" text NOT NULL, "salesAdId" character varying, CONSTRAINT "PK_da26936c1ff5c5508c1b4d8922c" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TYPE "public"."users_role_enum" AS ENUM('seller', 'buyer')`);
         await queryRunner.query(`CREATE TABLE "users" ("id" character varying NOT NULL, "created_at" text NOT NULL, "firstName" character varying(255) NOT NULL, "lastName" character varying(255) NOT NULL, "email" character varying(255) NOT NULL, "password" character varying(255) NOT NULL, "cpf" character varying(11) NOT NULL, "cellphone" character varying(14) NOT NULL, "birthdate" date NOT NULL, "description" text NOT NULL, "userImage" text, "role" "public"."users_role_enum" NOT NULL, CONSTRAINT "UQ_97672ac88f789774dd47f7c8be3" UNIQUE ("email"), CONSTRAINT "UQ_230b925048540454c8b4c481e1c" UNIQUE ("cpf"), CONSTRAINT "UQ_15f2ebe082a6e43a960f9f88411" UNIQUE ("cellphone"), CONSTRAINT "PK_a3ffb1c0c8416b9fc6f907b7433" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "addresses" ("id" character varying NOT NULL, "created_at" text NOT NULL, "cep" character varying(8) NOT NULL, "state" character varying(2) NOT NULL, "city" character varying(255) NOT NULL, "street" character varying(255) NOT NULL, "addressNumber" integer NOT NULL, "addressComplement" character varying(255), "userId" character varying, CONSTRAINT "REL_95c93a584de49f0b0e13f75363" UNIQUE ("userId"), CONSTRAINT "PK_745d8f43d3af10ab8247465e450" PRIMARY KEY ("id"))`);
