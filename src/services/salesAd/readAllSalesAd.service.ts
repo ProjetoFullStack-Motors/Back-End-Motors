@@ -1,13 +1,13 @@
 import { SalesAd } from "../../entities/salesAd.entity";
 import {
     TListArgument,
+    TPaginateSalesAd,
     TPaginateSalesAdResponse,
 } from "../../interfaces/salesAd.interface";
+import schemas from "../../schemas";
 import repositories from "../../utils";
 
-const readAll = async (
-    toListing: TListArgument
-): Promise<TPaginateSalesAdResponse> => {
+const readAll = async (toListing: TListArgument): Promise<TPaginateSalesAd> => {
     let objectToListing = toListing.objectToListing;
 
     const page = toListing.page;
@@ -15,8 +15,8 @@ const readAll = async (
 
     objectToListing = {
         relations: {
-            salesImages: true,
             user: true,
+            salesImages: true,
         },
         ...objectToListing,
     };
@@ -45,7 +45,7 @@ const readAll = async (
         data: salesAd,
     };
 
-    return listSalesAdReturn;
+    return schemas.salesAd.paginateSalesAdResponse.parse(listSalesAdReturn);
 };
 
 export default readAll;

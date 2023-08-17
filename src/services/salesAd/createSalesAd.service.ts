@@ -18,7 +18,7 @@ const create = async (
         price: salesAdData.price * 100,
     };
 
-    const { images, ...salesAdDetails } = salesAdData;
+    const { salesImages, ...salesAdDetails } = salesAdData;
 
     const user: User | null = await repositories.usersRepo.findOneBy({ id });
 
@@ -27,8 +27,8 @@ const create = async (
 
     const imagesArr: TSalesImagesResponse[] = [];
 
-    if (images && images.length > 0) {
-        for (const image of images) {
+    if (salesImages && salesImages.length > 0) {
+        for (const image of salesImages) {
             const newImage = repositories.salesImageRepo.create(image);
 
             newImage.salesAd = sales;
@@ -42,7 +42,7 @@ const create = async (
         }
     }
 
-    return { ...sales, images: imagesArr };
+    return { ...sales, salesImages: imagesArr };
 };
 
 export default create;
