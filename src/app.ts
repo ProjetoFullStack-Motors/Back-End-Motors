@@ -12,6 +12,7 @@ app.use(cors({}));
 
 app.use("/salesAd", routes.salesAd);
 app.use("/users", routes.users);
+app.use("/recoverPass", routes.recoverPass);
 
 app.use(middlewares.handleError);
 

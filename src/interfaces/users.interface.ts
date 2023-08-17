@@ -13,6 +13,8 @@ type TUserWithoutAddress = z.infer<typeof schemas.users.userWithoutAddress>;
 
 type TUserWithoutSales = z.infer<typeof schemas.users.userWithoutSales>;
 
+type TUserEmailData = z.infer<typeof schemas.users.userEmailSchema>;
+
 export {
     TUser,
     TUserRequest,
@@ -20,4 +22,5 @@ export {
     TLogin,
     TUserWithoutAddress,
     TUserWithoutSales,
+    TUserEmailData,
 };
