@@ -57,9 +57,6 @@ class SalesImages extends BaseEntity {
     @Column({ type: "text" })
     imageUrl: string;
 
-    @Column({ type: "boolean", default: false })
-    principal: boolean;
-
     @ManyToOne(() => SalesAd, (salesAd) => salesAd.salesImages, {
         onDelete: "CASCADE",
     })

@@ -5,7 +5,6 @@ import {
     TSalesAdRequest,
     TSalesAdResponse,
     TSalesAdUpdate,
-    TSalesImagesRequest,
 } from "../interfaces/salesAd.interface";
 import { SalesAd } from "../entities/salesAd.entity";
 
@@ -74,39 +73,12 @@ const deleteById = async (req: Request, res: Response): Promise<Response> => {
     return res.status(204).send();
 };
 
-const createImage = async (req: Request, res: Response): Promise<Response> => {
-    const imageData: TSalesImagesRequest = req.body;
-    const salesAdId = req.params.id;
-
-    await services.salesAd.createImage(imageData, salesAdId);
-
-    return res.status(201).json({ message: "Image created" });
-};
-
-const updateImageById = async (
-    req: Request,
-    res: Response
-): Promise<Response> => {
-    const { id, imageId } = req.params;
-    const salesImageData: TSalesImagesRequest = req.body;
-
-    const newSaleImage = await services.salesAd.updateImageById(
-        id,
-        imageId,
-        salesImageData
-    );
-
-    return res.json(newSaleImage);
-};
-
 const salesAd = {
     create,
     readAll,
     readById,
     updateById,
     deleteById,
-    createImage,
-    updateImageById,
     filterReadAll,
     findExistentValues,
 };

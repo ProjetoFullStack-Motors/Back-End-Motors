@@ -2,6 +2,14 @@ import { z } from "zod";
 
 const onlyNumbers = new RegExp("^[0-9]+$");
 
+const imagesResponse = z.object({
+    id: z.string(),
+    imageUrl: z.string(),
+    created_at: z.string(),
+});
+
+const imagesRequest = imagesResponse.omit({ id: true, created_at: true });
+
 const response = z.object({
     id: z.string(),
     brand: z.string().max(255),
@@ -15,6 +23,7 @@ const response = z.object({
     description: z.string(),
     status: z.boolean().default(true),
     created_at: z.string(),
+    images: z.array(imagesRequest),
 });
 
 const request = response.omit({
@@ -33,15 +42,6 @@ const update = z
         status: z.boolean(),
     })
     .partial();
-
-const imagesResponse = z.object({
-    id: z.string(),
-    imageUrl: z.string(),
-    principal: z.boolean().default(false),
-    created_at: z.string(),
-});
-
-const imagesRequest = imagesResponse.omit({ id: true, created_at: true });
 
 const salesAd = {
     response,
