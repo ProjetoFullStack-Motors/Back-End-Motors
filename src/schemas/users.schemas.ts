@@ -34,6 +34,10 @@ const LoginSchema = z.object({
     password: z.string(),
 });
 
+const userEmailSchema = LoginSchema.pick({
+    email: true,
+});  
+
 const userWithoutAddress = userSchema.omit({ password: true, address: true });
 
 const userWithoutSales = userResponseSchema.omit({ sales: true });
@@ -45,6 +49,7 @@ const users = {
     LoginSchema,
     userWithoutAddress,
     userWithoutSales,
+    userEmailSchema,
 };
 
 export default users;
