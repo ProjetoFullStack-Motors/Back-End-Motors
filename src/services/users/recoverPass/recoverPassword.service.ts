@@ -6,8 +6,7 @@ import { User } from "../../../entities/users.entity";
 import { TUserEmailData } from "../../../interfaces/users.interface";
 import "dotenv/config";
 
-
-const recoverPassword = async ( userEmail: TUserEmailData): Promise<void> => {
+const recoverPassword = async (userEmail: TUserEmailData): Promise<void> => {
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
     const findUser: User | null = await repositories.usersRepo.findOneBy({
@@ -26,7 +25,8 @@ const recoverPassword = async ( userEmail: TUserEmailData): Promise<void> => {
         },
     });
 
-    transport.verify()
+    transport
+        .verify()
         .then(console.log)
         .catch(() => {
             throw new AppError("Fail to send mail", 404);
@@ -39,7 +39,7 @@ const recoverPassword = async ( userEmail: TUserEmailData): Promise<void> => {
             from: "Adminstrador <emailapiprojecttest@gmail.com>",
             to: userEmail.email,
             subject: "Recuperação de senha",
-            html: `<p>Olá, segue senha de recuperação: ${newPassword}</p><br/><a href="http://localhost:3000/login">Página Login</a>`,
+            html: `<p>Olá, segue senha de recuperação: ${newPassword}</p><br/><a href="http://localhost:5173/login">Página Login</a>`,
         })
         .then(async () => {
             const passwordData = {
@@ -49,7 +49,7 @@ const recoverPassword = async ( userEmail: TUserEmailData): Promise<void> => {
             //criar o service de update futuramente
             const newUserData: User = repositories.usersRepo.create({
                 ...findUser,
-                ...passwordData
+                ...passwordData,
             });
 
             await repositories.usersRepo.save(newUserData);
