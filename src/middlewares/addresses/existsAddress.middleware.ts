@@ -7,12 +7,25 @@ const existsAddress = async (
     res: Response,
     next: NextFunction
 ): Promise<Response | void> => {
-    const { street, addressNumber } = req.body.address;
+    let cep: string;
+    let street: string;
+    let addressNumber: number;
+
+    if (req.method === "POST") {
+        cep = req.body.address.cep;
+        street = req.body.address.street;
+        addressNumber = req.body.address.addressNumber;
+    } else {
+        cep = req.body.cep;
+        street = req.body.street;
+        addressNumber = req.body.addressNumber;
+    }
 
     const address: Address | null = await repositories.addressesRepo.findOne({
         where: {
             street: street,
             addressNumber: addressNumber,
+            cep: cep,
         },
     });
 
