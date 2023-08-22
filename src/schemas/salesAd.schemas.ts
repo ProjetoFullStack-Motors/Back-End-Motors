@@ -34,6 +34,7 @@ const request = response.omit({
 const responseArray = z.array(response);
 
 const userRes = z.object({
+    id: z.string(),
     firstName: z.string().max(255),
     lastName: z.string().max(255),
     userImage: z.string().nullish(),
