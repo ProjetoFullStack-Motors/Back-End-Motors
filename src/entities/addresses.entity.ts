@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, OneToOne } from "typeorm";
+import { Column, Entity, JoinColumn, OneToMany, OneToOne } from "typeorm";
 import { BaseEntity } from "./baseEntity.entity";
 import { User } from "./users.entity";
 
@@ -22,7 +22,7 @@ class Address extends BaseEntity {
     @Column({ type: "varchar", length: 255, nullable: true })
     addressComplement: string | null | undefined;
 
-    @OneToOne(() => User, (user) => user.address, { onDelete: "CASCADE" })
+    @OneToOne(() => User, (user) => user.address, { cascade: true })
     @JoinColumn()
     user: User;
 }
