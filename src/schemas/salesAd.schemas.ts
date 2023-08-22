@@ -33,14 +33,15 @@ const request = response.omit({
 
 const responseArray = z.array(response);
 
-const userTest = z.object({
+const userRes = z.object({
     firstName: z.string().max(255),
     lastName: z.string().max(255),
     userImage: z.string().nullish(),
+    description: z.string(),
 });
 
 const responseWithoutPass = response.extend({
-    user: userTest,
+    user: userRes,
 });
 
 const update = z
