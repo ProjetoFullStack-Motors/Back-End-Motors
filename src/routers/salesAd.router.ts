@@ -46,4 +46,10 @@ salesAd.delete(
     controllers.salesAd.deleteById
 );
 
+salesAd.get(
+    "/users/:id",
+    middlewares.paginateSalesAd,
+    controllers.salesAd.retrieveSalesByUserId
+);
+
 export default salesAd;
