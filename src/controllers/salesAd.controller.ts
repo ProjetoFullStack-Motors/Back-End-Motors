@@ -75,6 +75,18 @@ const deleteById = async (req: Request, res: Response): Promise<Response> => {
     return res.status(204).send();
 };
 
+const retrieveSalesByUserId = async (
+    req: Request,
+    res: Response
+): Promise<Response> => {
+    const id: string = req.params.id;
+    const toListing = res.locals.toListing;
+
+    const sales = await services.salesAd.retrieveSalesByUserId(id, toListing);
+
+    return res.json(sales);
+};
+
 const salesAd = {
     create,
     readAll,
@@ -83,6 +95,7 @@ const salesAd = {
     deleteById,
     filterReadAll,
     findExistentValues,
+    retrieveSalesByUserId,
 };
 
 export default salesAd;
