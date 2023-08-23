@@ -19,6 +19,4 @@ users.post(
     controllers.users.login
 );
 
-users.get("/:id", controllers.users.retrieveUserSales);
-
 export default users;
