@@ -34,5 +34,5 @@ const users = {
     create,
     login,
     updateUser
-};
+
 export default users;

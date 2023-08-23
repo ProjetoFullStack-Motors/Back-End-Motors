@@ -19,6 +19,8 @@ users.post(
     controllers.users.login
 );
 
+
 users.patch("/:id", middlewares.validateSchema(schemas.users.userUdpateSchema), controllers.users.updateUser);
+
 
 export default users;
