@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import services from "../services";
-import { TLogin,TUserUdpateRequest, TUserWithoutAddress } from "../interfaces/users.interface";
-
-import update from "../services/users/updateUsers.service";
-
-
+import {
+    TLogin,
+    TUserUdpateRequest,
+    TUserWithoutAddress,
+} from "../interfaces/users.interface";
 
 const create = async (req: Request, res: Response): Promise<Response> => {
     const user = await services.users.create(req.body);
@@ -20,11 +20,10 @@ const login = async (req: Request, res: Response): Promise<Response> => {
     return res.json({ token });
 };
 
-
 const updateUser = async (req: Request, res: Response): Promise<Response> => {
     const payload: TUserUdpateRequest = req.body;
     const id = req.params.id;
-    const user: TUserWithoutAddress = await update(id, payload);
+    const user: TUserWithoutAddress = await services.users.update(id, payload);
     return res.json(user);
 };
 
@@ -33,6 +32,7 @@ const updateUser = async (req: Request, res: Response): Promise<Response> => {
 const users = {
     create,
     login,
-    updateUser
+    updateUser,
+};
 
 export default users;
