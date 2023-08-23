@@ -11,7 +11,14 @@ const retrieveSalesByUserId = async (
     const page = toListing.page;
     const perPage = toListing.perPage;
 
-    const user = await repositories.usersRepo.findOneBy({ id });
+    const user = await repositories.usersRepo.findOne({
+        where: {
+            id,
+        },
+        relations: {
+            address: true,
+        },
+    });
 
     const queryBuilder = repositories.salesAdRepo.createQueryBuilder("salesAd");
     queryBuilder
