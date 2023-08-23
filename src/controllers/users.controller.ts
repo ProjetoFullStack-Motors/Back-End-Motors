@@ -1,6 +1,10 @@
 import { Request, Response } from "express";
 import services from "../services";
-import { TLogin } from "../interfaces/users.interface";
+import { TLogin, TUserResponse, TUserUdpateRequest } from "../interfaces/users.interface";
+
+import update from "../services/users/updateUsers.service";
+import { User } from "../entities/users.entity";
+
 
 const create = async (req: Request, res: Response): Promise<Response> => {
     const user = await services.users.create(req.body);
@@ -27,9 +31,19 @@ const retrieveUserSales = async (
     return res.json(user);
 };
 
+const updateUser = async (req: Request, res: Response): Promise<Response> => {
+    const payload: TUserUdpateRequest = req.body;
+    const id = req.params.id;
+    const user: TUserResponse = await update(id, payload);
+    return res.json(user);
+};
+
+// const delete = async (req: Request, res: Response): Promise<Response> => {};
+
 const users = {
     create,
     login,
     retrieveUserSales,
+    updateUser
 };
 export default users;

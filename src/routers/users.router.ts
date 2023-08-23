@@ -21,4 +21,6 @@ users.post(
 
 users.get("/:id", controllers.users.retrieveUserSales);
 
+users.patch("/:id", middlewares.validateSchema(schemas.users.userUdpateSchema), controllers.users.updateUser);
+
 export default users;
