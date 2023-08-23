@@ -38,9 +38,11 @@ const userEmailSchema = LoginSchema.pick({
     email: true,
 });
 
-const userWithoutAddress = userSchema.omit({ password: true, address: true });
+const userWithoutAddress = userSchema.omit({ address: true, password: true});
 
-const userWithoutSales = userResponseSchema.omit({ sales: true });
+const userWithoutSales = userResponseSchema.omit({ sales: true});
+
+const userUdpateSchema = userRequestSchema.partial();
 
 const users = {
     userSchema,
@@ -50,6 +52,7 @@ const users = {
     userWithoutAddress,
     userWithoutSales,
     userEmailSchema,
+    userUdpateSchema,
 };
 
 export default users;
