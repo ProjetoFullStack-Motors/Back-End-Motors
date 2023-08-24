@@ -1,4 +1,7 @@
-import { TUserUdpateRequest, TUserWithoutAddress } from "../../interfaces/users.interface";
+import {
+    TUserUdpateRequest,
+    TUserWithoutAddress,
+} from "../../interfaces/users.interface";
 import schemas from "../../schemas";
 import repositories from "../../utils";
 
@@ -12,13 +15,10 @@ const update = async (
         throw new Error("User not found");
     }
 
-    const user = repositories.usersRepo.create(
-        { ...foundUser, ...payload }
-    );
-    
+    const user = repositories.usersRepo.create({ ...foundUser, ...payload });
+
     await repositories.usersRepo.save(user);
 
-   
     const userRes = schemas.users.userWithoutAddress.parse(user);
 
     return userRes;
