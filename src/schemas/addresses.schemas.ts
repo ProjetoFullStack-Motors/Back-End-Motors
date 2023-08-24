@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const addressSchema = z.object({
+export const addressSchema = z.object({
     id: z.string(),
     cep: z.string().max(8),
     state: z.string().max(2),
