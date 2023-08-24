@@ -22,6 +22,10 @@ const userRes = z.object({
     description: z.string(),
     role: z.string(),
     address: addressSchema,
+    cellphone: z.string().max(14),
+    email: z.string(),
+    birthdate: z.union([z.date(), z.string()]),
+    cpf: z.string().max(11),
 });
 
 const userResWithoutAddress = userRes.omit({ address: true });
