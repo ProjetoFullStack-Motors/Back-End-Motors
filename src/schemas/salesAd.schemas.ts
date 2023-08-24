@@ -9,7 +9,10 @@ const imagesResponse = z.object({
     created_at: z.string(),
 });
 
-const imagesRequest = imagesResponse.omit({ id: true, created_at: true });
+const imagesRequest = imagesResponse.omit({
+    id: true,
+    created_at: true,
+});
 
 const userRes = z.object({
     id: z.string(),
@@ -42,6 +45,7 @@ const response = z.object({
 const request = response.omit({
     id: true,
     created_at: true,
+    user: true,
 });
 
 const salesAdResponseWithoutUser = response.omit({ user: true });

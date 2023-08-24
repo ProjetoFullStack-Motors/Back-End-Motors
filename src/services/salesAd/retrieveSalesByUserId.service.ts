@@ -1,6 +1,6 @@
 import {
     TListArgument,
-    TPaginateSalesAd,
+    TPaginateSalesAdWithUser,
 } from "../../interfaces/salesAd.interface";
 import schemas from "../../schemas";
 import repositories from "../../utils";
@@ -8,7 +8,7 @@ import repositories from "../../utils";
 const retrieveSalesByUserId = async (
     id: string,
     toListing: TListArgument
-): Promise<TPaginateSalesAd> => {
+): Promise<TPaginateSalesAdWithUser> => {
     const page = toListing.page;
     const perPage = toListing.perPage;
 
