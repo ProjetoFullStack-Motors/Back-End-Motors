@@ -19,8 +19,15 @@ users.post(
     controllers.users.login
 );
 
+users.patch(
+    "/update/:id",
+    middlewares.validateSchema(schemas.users.userUdpateSchema),
+    controllers.users.updateUser
+);
 
-users.patch("/:id", middlewares.validateSchema(schemas.users.userUdpateSchema), controllers.users.updateUser);
-
+users.delete(
+    "/delete/:id",
+    controllers.users.deleteUser
+);
 
 export default users;

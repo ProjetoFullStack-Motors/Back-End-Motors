@@ -7,8 +7,9 @@ const update = async (
     payload: TUserUdpateRequest
 ): Promise<TUserWithoutAddress> => {
     const foundUser = await repositories.usersRepo.findOneBy({ id: id });
+    console.log(foundUser, "foundUser");
 
-    if (!foundUser) {
+    if (!foundUser || foundUser === null) {
         throw new Error("User not found");
     }
 
