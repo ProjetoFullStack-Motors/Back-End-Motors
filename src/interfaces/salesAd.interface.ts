@@ -42,6 +42,10 @@ type TSalesAdResponseId = z.infer<typeof schemas.salesAd.responseWithoutPass>;
 
 type TPaginateSalesAd = z.infer<typeof schemas.salesAd.paginateSalesAdResponse>;
 
+type TPaginateSalesAdWithUser = z.infer<
+    typeof schemas.salesAd.paginateSalesAdWithUser
+>;
+
 type TPaginateSalesAdResponse = {
     prevPage: string | null;
     nextPage: string | null;
@@ -82,4 +86,5 @@ export {
     TSalesWithImages,
     TPaginateSalesAd,
     TSalesAdResponseId,
+    TPaginateSalesAdWithUser,
 };
