@@ -27,12 +27,17 @@ const updateUser = async (req: Request, res: Response): Promise<Response> => {
     return res.json(user);
 };
 
-// const delete = async (req: Request, res: Response): Promise<Response> => {};
+const deleteUser = async (req: Request, res: Response): Promise<Response> => {
+    const id = req.params.id;
+    await services.users.deleteUser(id);
+    return res.json();
+};
 
 const users = {
     create,
     login,
     updateUser,
+    deleteUser,
 };
 
 export default users;
