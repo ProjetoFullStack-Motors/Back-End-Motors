@@ -6,8 +6,6 @@ import {
     TUserWithoutAddress,
 } from "../interfaces/users.interface";
 
-import update from "../services/users/updateUsers.service";
-
 const create = async (req: Request, res: Response): Promise<Response> => {
     const user = await services.users.create(req.body);
 
@@ -27,16 +25,21 @@ const updateUser = async (req: Request, res: Response): Promise<Response> => {
     console.log(payload);
 
     const id = req.params.id;
-    const user: TUserWithoutAddress = await update(id, payload);
+    const user: TUserWithoutAddress = await services.users.update(id, payload);
     return res.json(user);
 };
 
-// const delete = async (req: Request, res: Response): Promise<Response> => {};
+const deleteUser = async (req: Request, res: Response): Promise<Response> => {
+    const id = req.params.id;
+    await services.users.deleteUser(id);
+    return res.json();
+};
 
 const users = {
     create,
     login,
     updateUser,
+    deleteUser,
 };
 
 export default users;
