@@ -45,6 +45,8 @@ const readAll = async (toListing: TListArgument): Promise<TPaginateSalesAd> => {
         data: salesAd,
     };
 
+    console.log(listSalesAdReturn);
+
     return schemas.salesAd.paginateSalesAdResponse.parse(listSalesAdReturn);
 };
 

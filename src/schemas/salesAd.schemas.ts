@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { addressSchema } from "./addresses.schemas";
 
 const onlyNumbers = new RegExp("^[0-9]+$");
 
@@ -9,6 +10,17 @@ const imagesResponse = z.object({
 });
 
 const imagesRequest = imagesResponse.omit({ id: true, created_at: true });
+
+const userRes = z.object({
+    id: z.string(),
+    firstName: z.string().max(255),
+    lastName: z.string().max(255),
+    userImage: z.string().nullish(),
+    description: z.string(),
+    address: addressSchema,
+});
+
+const userResWithoutAddress = userRes.omit({ address: true });
 
 const response = z.object({
     id: z.string(),
@@ -24,6 +36,7 @@ const response = z.object({
     status: z.boolean().default(true),
     created_at: z.string(),
     salesImages: z.array(imagesRequest),
+    user: userResWithoutAddress,
 });
 
 const request = response.omit({
@@ -31,18 +44,14 @@ const request = response.omit({
     created_at: true,
 });
 
+const salesAdResponseWithoutUser = response.omit({ user: true });
+
 const responseArray = z.array(response);
 
-const userRes = z.object({
-    id: z.string(),
-    firstName: z.string().max(255),
-    lastName: z.string().max(255),
-    userImage: z.string().nullish(),
-    description: z.string(),
-});
+const salesAdResponseWithoutUserArray = z.array(salesAdResponseWithoutUser);
 
 const responseWithoutPass = response.extend({
-    user: userRes,
+    user: userResWithoutAddress,
 });
 
 const update = z
@@ -56,10 +65,18 @@ const update = z
     .partial();
 
 const paginateSalesAdResponse = z.object({
-    prevPage: z.string().nullish(),
-    nextPage: z.string().nullish(),
+    prevPage: z.string().nullable(),
+    nextPage: z.string().nullable(),
     count: z.number(),
-    data: z.array(responseWithoutPass),
+    data: responseArray,
+});
+
+const paginateSalesAdWithUser = z.object({
+    prevPage: z.string().nullable(),
+    nextPage: z.string().nullable(),
+    count: z.number(),
+    user: userRes,
+    data: salesAdResponseWithoutUserArray,
 });
 
 const salesAd = {
@@ -71,6 +88,8 @@ const salesAd = {
     imagesRequest,
     responseWithoutPass,
     paginateSalesAdResponse,
+    userRes,
+    paginateSalesAdWithUser,
 };
 
 export default salesAd;

@@ -1,13 +1,14 @@
 import {
     TListArgument,
-    TPaginateSalesAdResponse,
+    TPaginateSalesAd,
 } from "../../interfaces/salesAd.interface";
+import schemas from "../../schemas";
 import repositories from "../../utils";
 
 const retrieveSalesByUserId = async (
     id: string,
     toListing: TListArgument
-): Promise<TPaginateSalesAdResponse> => {
+): Promise<TPaginateSalesAd> => {
     const page = toListing.page;
     const perPage = toListing.perPage;
 
@@ -47,7 +48,10 @@ const retrieveSalesByUserId = async (
         data: sales,
     };
 
-    return listSalesAdReturn;
+    const salesAdRes =
+        schemas.salesAd.paginateSalesAdWithUser.parse(listSalesAdReturn);
+
+    return salesAdRes;
 };
 
 export default retrieveSalesByUserId;
