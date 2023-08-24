@@ -20,6 +20,7 @@ const userRes = z.object({
     lastName: z.string().max(255),
     userImage: z.string().nullish(),
     description: z.string(),
+    role: z.string(),
     address: addressSchema,
 });
 
