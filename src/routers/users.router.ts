@@ -21,12 +21,15 @@ users.post(
 
 users.patch(
     "/update/:id",
+    middlewares.ensureAuth,
     middlewares.validateSchema(schemas.users.userUdpateSchema),
+    middlewares.existsUserInfos,
     controllers.users.updateUser
 );
 
 users.delete(
     "/delete/:id",
+    middlewares.ensureAuth,
     controllers.users.deleteUser
 );
 
