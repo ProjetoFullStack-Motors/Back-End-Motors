@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { addressSchema } from "./addresses.schemas";
+import schemas from "./index";
 
 const onlyNumbers = new RegExp("^[0-9]+$");
 
@@ -40,7 +41,7 @@ const response = z.object({
     model: z.string().max(255),
     year: z.string().min(4).max(4).regex(onlyNumbers),
     mileage: z.number(),
-    engine: z.enum(["flex", "hybrid", "electric"]),
+    engine: z.enum(["flex", "hybrid", "electric"]).or(z.string()),
     isGoodPrice: z.boolean(),
     price: z.number(),
     color: z.string().max(255),
@@ -50,6 +51,14 @@ const response = z.object({
     salesImages: z.array(imagesRequest),
     user: userResWithoutAddress,
 });
+
+const commentsResponse = response
+    .omit({
+        user: true,
+    })
+    .extend({
+        user: schemas.users.userWithoutSalesAndAddress,
+    });
 
 const request = response.omit({
     id: true,
@@ -112,6 +121,7 @@ const salesAd = {
     paginateSalesAdResponse,
     userRes,
     paginateSalesAdWithUser,
+    commentsResponse,
 };
 
 export default salesAd;

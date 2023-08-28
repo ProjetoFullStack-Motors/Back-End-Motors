@@ -13,7 +13,7 @@ const userSchema = z.object({
     birthdate: z.union([z.date(), z.string()]),
     description: z.string(),
     userImage: z.string().nullish(),
-    role: z.enum(["seller", "buyer"]),
+    role: z.enum(["seller", "buyer"]).or(z.string()),
     created_at: z.union([z.date(), z.string()]),
     address: addresses.addressRequestSchema,
     sales: z.optional(salesAd.responseArray),
@@ -38,9 +38,14 @@ const userEmailSchema = LoginSchema.pick({
     email: true,
 });
 
-const userWithoutAddress = userSchema.omit({ address: true, password: true});
+const userWithoutAddress = userSchema.omit({ address: true, password: true });
 
-const userWithoutSales = userResponseSchema.omit({ sales: true});
+const userWithoutSales = userResponseSchema.omit({ sales: true });
+
+const userWithoutSalesAndAddress = userResponseSchema.omit({
+    sales: true,
+    address: true,
+});
 
 const userUdpateSchema = userRequestSchema.partial();
 
@@ -53,6 +58,7 @@ const users = {
     userWithoutSales,
     userEmailSchema,
     userUdpateSchema,
+    userWithoutSalesAndAddress,
 };
 
 export default users;
