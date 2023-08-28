@@ -10,6 +10,7 @@ import { BaseEntity } from "./baseEntity.entity";
 import { getRounds, hashSync } from "bcryptjs";
 import { SalesAd } from "./salesAd.entity";
 import { Address } from "./addresses.entity";
+import SaleComments from "./salesComments.entity";
 
 export enum Role {
     seller = "seller",
@@ -55,6 +56,9 @@ class User extends BaseEntity {
         onDelete: "CASCADE",
     })
     address: Address;
+
+    @OneToMany(() => SaleComments, (salesComments) => salesComments.user)
+    comments: SaleComments[];
 
     @BeforeInsert()
     @BeforeUpdate()

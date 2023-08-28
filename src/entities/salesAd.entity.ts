@@ -2,6 +2,7 @@ import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
 
 import { BaseEntity } from "./baseEntity.entity";
 import { User } from "./users.entity";
+import SaleComments from "./salesComments.entity";
 
 export enum Engine {
     flex = "flex",
@@ -46,6 +47,9 @@ class SalesAd extends BaseEntity {
 
     @ManyToOne(() => User, (user) => user.sales, { onDelete: "CASCADE" })
     user: User;
+
+    @OneToMany(() => SaleComments, (salesComments) => salesComments.salesAd)
+    comments: SaleComments[];
 }
 
 @Entity("salesImages", {
