@@ -1,4 +1,3 @@
-import { SalesAd, SalesImages } from "../../entities/salesAd.entity";
 import {
     TSalesAdUpdate,
     TSalesWithImages,
@@ -10,26 +9,21 @@ const updateById = async (
     salesAdData: TSalesAdUpdate
 ): Promise<TSalesWithImages> => {
     const { salesImages, ...salesAd } = salesAdData;
+    console.log(salesImages);
 
-    // if (salesImages) {
-    //     const salesImagesRepo = await repositories.salesImageRepo
-    //         .createQueryBuilder()
-    //         .select("salesImages.imageUrl")
-    //         .from(SalesImages, "salesImages")
-    //         .where("SalesImages.salesAdId = :id", { id: salesAdId })
-    //         .getMany();
-
-    //     console.log(salesImagesRepo);
-
-    //     for (const { imageUrl } of salesImages) {
-    //         await repositories.salesImageRepo.update(salesAdId, {
-    //             imageUrl: imageUrl!,
-    //         });
-    //     }
-    // }
+    if (Array.isArray(salesImages)) {
+        for (const { id, imageUrl } of salesImages) {
+            console.log(id, imageUrl);
+            await repositories.salesImageRepo.update(
+                { id: id! },
+                {
+                    imageUrl: imageUrl!,
+                }
+            );
+        }
+    }
 
     await repositories.salesAdRepo.update({ id: salesAdId }, salesAd);
-
     const updatedSales = await repositories.salesAdRepo.findOne({
         relations: {
             salesImages: true,
@@ -38,7 +32,6 @@ const updateById = async (
             id: salesAdId,
         },
     });
-
     return updatedSales!;
 };
 
