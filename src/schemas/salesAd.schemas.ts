@@ -14,6 +14,10 @@ const imagesRequest = imagesResponse.omit({
     created_at: true,
 });
 
+const imagesRequestUpdate = imagesResponse.omit({
+    created_at: true,
+});
+
 const userRes = z.object({
     id: z.string(),
     firstName: z.string().max(255),
@@ -53,6 +57,12 @@ const request = response.omit({
     user: true,
 });
 
+const salesAdUpdateRequest = request
+    .omit({
+        salesImages: true,
+    })
+    .extend({ salesImages: imagesRequestUpdate });
+
 const salesAdResponseWithoutUser = response.omit({ user: true });
 
 const responseArray = z.array(response);
@@ -70,9 +80,9 @@ const update = z
         description: z.string(),
         mileage: z.number(),
         status: z.boolean(),
-        salesImages: z.array(imagesRequest),
+        salesImages: z.array(imagesRequestUpdate),
     })
-    .partial();
+    .deepPartial();
 
 const paginateSalesAdResponse = z.object({
     prevPage: z.string().nullable(),
@@ -94,8 +104,10 @@ const salesAd = {
     responseArray,
     request,
     update,
+    salesAdUpdateRequest,
     imagesResponse,
     imagesRequest,
+    imagesRequestUpdate,
     responseWithoutPass,
     paginateSalesAdResponse,
     userRes,

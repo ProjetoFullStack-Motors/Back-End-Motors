@@ -1,6 +1,5 @@
 import { z } from "zod";
 import { DeepPartial, FindManyOptions } from "typeorm";
-
 import { SalesAd } from "../entities/salesAd.entity";
 import schemas from "../schemas";
 
@@ -10,7 +9,11 @@ type TSalesAdResponseArray = z.infer<typeof schemas.salesAd.responseArray>;
 
 type TSalesAdRequest = z.infer<typeof schemas.salesAd.request>;
 
-type TSalesAdUpdate = DeepPartial<TSalesAdRequest>;
+type TSalesAdUpdateRequest = z.infer<
+    typeof schemas.salesAd.salesAdUpdateRequest
+>;
+
+type TSalesAdUpdate = DeepPartial<TSalesAdUpdateRequest>;
 
 type TSalesImagesResponse = z.infer<typeof schemas.salesAd.imagesResponse>;
 
