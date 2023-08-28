@@ -70,6 +70,7 @@ const update = z
         description: z.string(),
         mileage: z.number(),
         status: z.boolean(),
+        salesImages: z.array(imagesRequest),
     })
     .partial();
 
