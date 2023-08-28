@@ -14,6 +14,7 @@ app.use("/salesAd", routes.salesAd);
 app.use("/users", routes.users);
 app.use("/recoverPass", routes.recoverPass);
 app.use("/address", routes.addresses);
+app.use("/comments", routes.salesComments);
 
 app.use(middlewares.handleError);
 
