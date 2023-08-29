@@ -9,11 +9,9 @@ const updateById = async (
     salesAdData: TSalesAdUpdate
 ): Promise<TSalesWithImages> => {
     const { salesImages, ...salesAd } = salesAdData;
-    console.log(salesImages);
 
     if (Array.isArray(salesImages)) {
         for (const { id, imageUrl } of salesImages) {
-            console.log(id, imageUrl);
             await repositories.salesImageRepo.update(
                 { id: id! },
                 {
