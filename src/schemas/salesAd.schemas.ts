@@ -1,6 +1,5 @@
 import { z } from "zod";
 import { addressSchema } from "./addresses.schemas";
-import schemas from "./index";
 
 const onlyNumbers = new RegExp("^[0-9]+$");
 
@@ -51,14 +50,6 @@ const response = z.object({
     salesImages: z.array(imagesRequest),
     user: userResWithoutAddress,
 });
-
-const commentsResponse = response
-    .omit({
-        user: true,
-    })
-    .extend({
-        user: schemas.users.userWithoutSalesAndAddress,
-    });
 
 const request = response.omit({
     id: true,
@@ -121,7 +112,6 @@ const salesAd = {
     paginateSalesAdResponse,
     userRes,
     paginateSalesAdWithUser,
-    commentsResponse,
 };
 
 export default salesAd;
