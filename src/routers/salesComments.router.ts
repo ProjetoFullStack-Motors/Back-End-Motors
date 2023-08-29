@@ -19,7 +19,14 @@ salesComments.get(
     controllers.salesCommentsControllers.getAllSalesAdComments
 );
 
-salesComments.patch("/:id", middlewares.ensureAuth);
+salesComments.patch(
+    "/:id",
+    middlewares.ensureAuth,
+    middlewares.verifyCommentId,
+    middlewares.isCommentOwner,
+    middlewares.validateSchema(salesCommentsSchema.request),
+    controllers.salesCommentsControllers.editComment
+);
 
 salesComments.delete("/:id", middlewares.ensureAuth);
 
