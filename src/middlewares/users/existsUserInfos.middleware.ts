@@ -9,43 +9,27 @@ const existsUserInfos = async (
 ): Promise<Response | void> => {
     const { email, cpf, cellphone } = req.body;
 
-    const userEmail: User | null = await repositories.usersRepo.findOneBy({
-        email: email,
-    });
+    const { id } = req.params;
 
-    const userCpf: User | null = await repositories.usersRepo.findOneBy({
-        cpf: cpf,
-    });
+    const userEmail: User | null = email
+        ? await repositories.usersRepo.findOneBy({ email })
+        : null;
+    const userCpf: User | null = cpf
+        ? await repositories.usersRepo.findOneBy({ cpf })
+        : null;
+    const userCell: User | null = cellphone
+        ? await repositories.usersRepo.findOneBy({ cellphone })
+        : null;
 
-    const userCell: User | null = await repositories.usersRepo.findOneBy({
-        cellphone: cellphone,
-    });
-
-    if (userEmail && userCell && userCpf) {
-        return res.status(409).json({
-            message: "Email, cellphone and CPF already exists",
-        });
-    } else if (userCell && userEmail) {
-        return res.status(409).json({
-            message: "Cellphone and CPF already exists",
-        });
-    } else if (userCpf && userEmail) {
-        return res.status(409).json({
-            message: "Email and CPF already exists",
-        });
-    } else if (userCell && userCpf) {
-        return res.status(409).json({
-            message: "Cellphone and CPF already exists",
-        });
-    } else if (userEmail) {
+    if (userEmail && id !== userEmail.id) {
         return res.status(409).json({
             message: "Email already exists",
         });
-    } else if (userCell) {
+    } else if (userCell && id !== userCell.id) {
         return res.status(409).json({
             message: "Cellphone already exists",
         });
-    } else if (userCpf) {
+    } else if (userCpf && id !== userCpf.id) {
         return res.status(409).json({
             message: "CPF already exists",
         });
