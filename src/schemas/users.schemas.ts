@@ -14,7 +14,7 @@ const userSchema = z.object({
     description: z.string(),
     userImage: z.string().nullish(),
     role: z.enum(["seller", "buyer"]).or(z.string()),
-    created_at: z.union([z.date(), z.string()]),
+    created_at: z.string(),
     address: addresses.addressRequestSchema,
     sales: z.optional(salesAd.responseArray),
 });

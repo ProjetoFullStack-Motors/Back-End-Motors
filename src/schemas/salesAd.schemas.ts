@@ -51,14 +51,6 @@ const response = z.object({
     user: userResWithoutAddress,
 });
 
-// const commentsResponse = response
-//     .omit({
-//         user: true,
-//     })
-//     .extend({
-//         user: schemas.users.userWithoutSalesAndAddress,
-//     });
-
 const request = response.omit({
     id: true,
     created_at: true,
