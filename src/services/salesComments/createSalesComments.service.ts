@@ -5,8 +5,8 @@ import {
 import { User } from "../../entities/users.entity";
 import repositories from "../../utils";
 import { SalesAd } from "../../entities/salesAd.entity";
-import schemas from "../../schemas";
-import SaleComments from "../../entities/salesComments.entity";
+
+import salesCommentsSchema from "../../schemas/salesComments.schemas";
 
 const createComment = async (
     data: TCommentRequest,
@@ -28,20 +28,17 @@ const createComment = async (
         },
     });
 
-    const treatedUser = schemas.users.userWithoutSalesAndAddress.parse(user!);
-    const treatedUserSeller = schemas.users.userWithoutSalesAndAddress.parse(
-        salesAd!.user
-    );
-
     const newComment = repositories.commentsRepo.create({
         ...data,
-        user: treatedUser,
-        salesAd: treatedUserSeller,
+        user: user!,
+        salesAd: salesAd!,
     });
+
+    const treatedNewComment = salesCommentsSchema.response.parse(newComment);
 
     await repositories.commentsRepo.save(newComment);
 
-    return newComment;
+    return treatedNewComment;
 };
 
 export default createComment;
