@@ -47,10 +47,22 @@ const editComment = async (
     return response.json(comment);
 };
 
+const deleteComment = async (
+    request: Request,
+    response: Response
+): Promise<Response> => {
+    const commentId: string = request.params.id;
+
+    await services.salesCommentsService.deleteComment(commentId);
+
+    return response.status(204).send();
+};
+
 const salesCommentsControllers = {
     create,
     getAllSalesAdComments,
     editComment,
+    deleteComment,
 };
 
 export default salesCommentsControllers;
