@@ -45,9 +45,16 @@ const request = response.omit({
     user: true,
 });
 
+const commentsWithoutSalesAd = response.omit({ salesAd: true });
+
+const allSalesAdCommentsSchema = salesSchema.extend({
+    comments: z.array(commentsWithoutSalesAd),
+});
+
 const salesCommentsSchema = {
     response,
     request,
+    allSalesAdCommentsSchema,
 };
 
 export default salesCommentsSchema;

@@ -1,8 +1,12 @@
 import { z } from "zod";
-import schemas from "../schemas";
+import salesCommentsSchema from "../schemas/salesComments.schemas";
 
-type TCommentRequest = z.infer<typeof schemas.salesCommentsSchema.request>;
+type TCommentRequest = z.infer<typeof salesCommentsSchema.request>;
 
-type TCommentResponse = z.infer<typeof schemas.salesCommentsSchema.response>;
+type TCommentResponse = z.infer<typeof salesCommentsSchema.response>;
 
-export { TCommentRequest, TCommentResponse };
+type TSalesAdComments = z.infer<
+    typeof salesCommentsSchema.allSalesAdCommentsSchema
+>;
+
+export { TCommentRequest, TCommentResponse, TSalesAdComments };
