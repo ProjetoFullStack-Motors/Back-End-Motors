@@ -34,9 +34,23 @@ const getAllSalesAdComments = async (
     return response.json(allComments);
 };
 
+const editComment = async (
+    request: Request,
+    response: Response
+): Promise<Response> => {
+    const commentId: string = request.params.id;
+    const requestBody: TCommentRequest = request.body;
+
+    const comment: TCommentResponse =
+        await services.salesCommentsService.editComment(commentId, requestBody);
+
+    return response.json(comment);
+};
+
 const salesCommentsControllers = {
     create,
     getAllSalesAdComments,
+    editComment,
 };
 
 export default salesCommentsControllers;
