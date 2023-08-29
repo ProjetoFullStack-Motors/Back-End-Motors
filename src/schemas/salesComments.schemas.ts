@@ -54,6 +54,7 @@ const allSalesAdCommentsSchema = salesSchema.extend({
 const salesCommentsSchema = {
     response,
     request,
+    commentsWithoutSalesAd,
     allSalesAdCommentsSchema,
 };
 

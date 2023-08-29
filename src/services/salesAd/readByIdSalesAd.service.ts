@@ -11,6 +11,7 @@ const readById = async (salesAdId: string): Promise<TSalesAdResponseId> => {
         relations: {
             salesImages: true,
             user: true,
+            comments: true,
         },
         order: {
             salesImages: {
@@ -23,6 +24,8 @@ const readById = async (salesAdId: string): Promise<TSalesAdResponseId> => {
         ...saleAd!,
         price: saleAd!.price / 100,
     };
+
+    console.log(saleAd);
 
     return schemas.salesAd.responseWithoutPass.parse(saleAd);
 };

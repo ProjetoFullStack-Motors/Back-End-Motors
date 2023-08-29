@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { addressSchema } from "./addresses.schemas";
+import salesCommentsSchema from "./salesComments.schemas";
 
 const onlyNumbers = new RegExp("^[0-9]+$");
 
@@ -32,7 +33,9 @@ const userRes = z.object({
     cpf: z.string().max(11),
 });
 
-const userResWithoutAddress = userRes.omit({ address: true });
+const userResWithoutAddress = userRes.omit({ address: true }).extend({
+    comments: z.array(salesCommentsSchema.commentsWithoutSalesAd).optional(),
+});
 
 const response = z.object({
     id: z.string(),
