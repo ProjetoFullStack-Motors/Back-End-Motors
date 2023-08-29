@@ -51,11 +51,16 @@ const response = z.object({
     user: userResWithoutAddress,
 });
 
-const request = response.omit({
-    id: true,
-    created_at: true,
-    user: true,
-});
+const request = response
+    .omit({
+        id: true,
+        created_at: true,
+        user: true,
+        salesImages: true,
+    })
+    .extend({
+        salesImages: z.array(imagesRequest),
+    });
 
 const salesAdUpdateRequest = request
     .omit({
