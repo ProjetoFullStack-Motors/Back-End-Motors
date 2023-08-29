@@ -28,6 +28,12 @@ salesComments.patch(
     controllers.salesCommentsControllers.editComment
 );
 
-salesComments.delete("/:id", middlewares.ensureAuth);
+salesComments.delete(
+    "/:id",
+    middlewares.ensureAuth,
+    middlewares.verifyCommentId,
+    middlewares.isCommentOwnerOrSeller,
+    controllers.salesCommentsControllers.deleteComment
+);
 
 export default salesComments;
