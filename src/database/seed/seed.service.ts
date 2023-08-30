@@ -22,15 +22,15 @@ const seedDb = async (id: string) => {
             salesImages: [
                 {
                     imageUrl:
-                        "https://img.elo7.com.br/product/zoom/2610E0D/convite-animado-relampago-mcqueen-carros-2.jpg",
+                        "https://img.freepik.com/fotos-premium/renderizacao-3d-de-um-carro-generico-sem-marca-em-um-ambiente-de-estudio-branco_101266-12914.jpg?w=2000",
                 },
                 {
                     imageUrl:
-                        "https://s2-autoesporte.glbimg.com/2qiUv9SwwaZOp6fvs3GP5EAvtjg=/0x0:1200x801/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_cf9d035bf26b4646b105bd958f32089d/internal_photos/bs/2022/3/f/6NM9XsRQGYbW1pQy09lQ/relampago-mcqueen.jpeg",
+                        "https://img.freepik.com/fotos-premium/renderizacao-3d-de-um-carro-generico-sem-marca-em-um-ambiente-de-estudio-branco_101266-13143.jpg",
                 },
                 {
                     imageUrl:
-                        "https://i.ytimg.com/vi/lkn_OjfdZZA/maxresdefault.jpg",
+                        "https://img.freepik.com/fotos-premium/renderizacao-3d-de-um-carro-generico-sem-marca-em-um-ambiente-de-estudio-branco_101266-9474.jpg?w=2000",
                 },
             ],
         };
