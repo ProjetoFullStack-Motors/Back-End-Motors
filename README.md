@@ -80,7 +80,7 @@ npm run dev
 <b>Ou pelo insomnia</b>:
 <br>
 <br>
-<a href="https://insomnia.rest/run/?label=Back-End-Motors&uri=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1uy61InEwfTgMlQP-_y5wY53RslPHpbXu%2Fview%3Fusp%3Dsharing" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
+<a href="https://insomnia.rest/run/?label=Back-End-Motors&uri=https%3A%2F%2Fgithub.com%2FRogermferr%2FBack-End-Motors-insomnia%2Fblob%2Fmain%2FInsomnia-All_2023-08-30.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
 
 <b>Caso queiram consumir API o link base do deploy é</b>: https://motorsm6.onrender.com
 
