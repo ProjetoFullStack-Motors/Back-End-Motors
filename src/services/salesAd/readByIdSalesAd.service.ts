@@ -1,9 +1,9 @@
 import { SalesAd } from "../../entities/salesAd.entity";
-import { TSalesAdResponseId } from "../../interfaces/salesAd.interface";
+import { TSalesAdResponse } from "../../interfaces/salesAd.interface";
 import schemas from "../../schemas";
 import repositories from "../../utils";
 
-const readById = async (salesAdId: string): Promise<TSalesAdResponseId> => {
+const readById = async (salesAdId: string): Promise<TSalesAdResponse> => {
     let saleAd: SalesAd | null = await repositories.salesAdRepo.findOne({
         where: {
             id: salesAdId,
