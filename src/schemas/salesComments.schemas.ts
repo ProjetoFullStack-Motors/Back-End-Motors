@@ -34,8 +34,8 @@ const response = z.object({
     id: z.string(),
     comment: z.string(),
     created_at: z.string(),
-    salesAd: salesSchema,
     user: userSchema,
+    salesAd: salesSchema,
 });
 
 const request = response.omit({

@@ -41,8 +41,6 @@ type TListArgument = {
     perPage: number;
 };
 
-type TSalesAdResponseId = z.infer<typeof schemas.salesAd.responseWithoutPass>;
-
 type TPaginateSalesAd = z.infer<typeof schemas.salesAd.paginateSalesAdResponse>;
 
 type TPaginateSalesAdWithUser = z.infer<
@@ -88,6 +86,5 @@ export {
     TFilterSalesAd,
     TSalesWithImages,
     TPaginateSalesAd,
-    TSalesAdResponseId,
     TPaginateSalesAdWithUser,
 };
