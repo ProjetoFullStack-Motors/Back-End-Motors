@@ -2,6 +2,7 @@ import {
     TListArgument,
     TPaginateSalesAdWithUser,
 } from "../../interfaces/salesAd.interface";
+import { AppError } from "../../middlewares/shared/handlerErrors.middleware";
 import schemas from "../../schemas";
 import repositories from "../../utils";
 
@@ -20,6 +21,10 @@ const retrieveSalesByUserId = async (
             address: true,
         },
     });
+
+    if (!user) {
+        throw new AppError("User not found", 404);
+    }
 
     const queryBuilder = repositories.salesAdRepo.createQueryBuilder("salesAd");
     queryBuilder

@@ -7,7 +7,9 @@
         "dev": "ts-node-dev --rs --cls --ignore-watch node_modules src/server.ts",
         "typeorm": "typeorm-ts-node-commonjs",
         "makemigrations": "npm run typeorm migration:generate -- -d ./src/data-source",
-        "migrate": "npm run typeorm migration:run -- -d ./src/data-source"
+        "migrate": "npm run typeorm migration:run -- -d ./src/data-source",
+        "build": "tsc",
+        "start": "node dist/server.js"
     },
     "author": "",
     "license": "ISC",
@@ -36,5 +38,8 @@
         "@typescript-eslint/eslint-plugin": "^6.2.1",
         "@typescript-eslint/parser": "^6.2.1",
         "eslint": "^8.46.0"
+    },
+    "engines": {
+        "node": ">=16 <17"
     }
 }
