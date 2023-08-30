@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import services from "../services";
 import {
     TSalesAdRequest,
-    TSalesAdResponseId,
+    TSalesAdResponse,
     TSalesAdUpdate,
     TSalesWithImages,
 } from "../interfaces/salesAd.interface";
@@ -48,7 +48,7 @@ const findExistentValues = async (
 const readById = async (req: Request, res: Response): Promise<Response> => {
     const salesAdId = req.params.id;
 
-    const saleAd: TSalesAdResponseId = await services.salesAd.readById(
+    const saleAd: TSalesAdResponse = await services.salesAd.readById(
         salesAdId
     );
 
