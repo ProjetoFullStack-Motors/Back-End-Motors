@@ -1,9 +1,9 @@
 import { SalesAd } from "../../entities/salesAd.entity";
-import { TSalesAdResponseId } from "../../interfaces/salesAd.interface";
+import { TSalesAdResponse } from "../../interfaces/salesAd.interface";
 import schemas from "../../schemas";
 import repositories from "../../utils";
 
-const readById = async (salesAdId: string): Promise<TSalesAdResponseId> => {
+const readById = async (salesAdId: string): Promise<TSalesAdResponse> => {
     let saleAd: SalesAd | null = await repositories.salesAdRepo.findOne({
         where: {
             id: salesAdId,
@@ -11,7 +11,9 @@ const readById = async (salesAdId: string): Promise<TSalesAdResponseId> => {
         relations: {
             salesImages: true,
             user: true,
-            comments: true,
+            comments: {
+                user: true,
+            },
         },
         order: {
             salesImages: {
@@ -25,9 +27,7 @@ const readById = async (salesAdId: string): Promise<TSalesAdResponseId> => {
         price: saleAd!.price / 100,
     };
 
-    console.log(saleAd);
-
-    return schemas.salesAd.responseWithoutPass.parse(saleAd);
+    return schemas.salesAd.response.parse(saleAd);
 };
 
 export default readById;

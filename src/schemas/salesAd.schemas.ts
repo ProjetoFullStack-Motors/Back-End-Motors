@@ -33,9 +33,7 @@ const userRes = z.object({
     cpf: z.string().max(11),
 });
 
-const userResWithoutAddress = userRes.omit({ address: true }).extend({
-    comments: z.array(salesCommentsSchema.commentsWithoutSalesAd).optional(),
-});
+const userResWithoutAddress = userRes.omit({ address: true });
 
 const response = z.object({
     id: z.string(),
@@ -52,6 +50,7 @@ const response = z.object({
     created_at: z.string(),
     salesImages: z.array(imagesRequestUpdate),
     user: userResWithoutAddress,
+    comments: z.array(salesCommentsSchema.commentsWithoutSalesAd).optional(),
 });
 
 const request = response
@@ -60,6 +59,7 @@ const request = response
         created_at: true,
         user: true,
         salesImages: true,
+        comments: true,
     })
     .extend({
         salesImages: z.array(imagesRequest),
@@ -76,10 +76,6 @@ const salesAdResponseWithoutUser = response.omit({ user: true });
 const responseArray = z.array(response);
 
 const salesAdResponseWithoutUserArray = z.array(salesAdResponseWithoutUser);
-
-const responseWithoutPass = response.extend({
-    user: userResWithoutAddress,
-});
 
 const update = z
     .object({
@@ -116,7 +112,6 @@ const salesAd = {
     imagesResponse,
     imagesRequest,
     imagesRequestUpdate,
-    responseWithoutPass,
     paginateSalesAdResponse,
     userRes,
     paginateSalesAdWithUser,
