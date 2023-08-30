@@ -52,9 +52,7 @@ class User extends BaseEntity {
     @OneToMany(() => SalesAd, (sales) => sales.user)
     sales: SalesAd[];
 
-    @OneToOne(() => Address, (address) => address.user, {
-        onDelete: "CASCADE",
-    })
+    @OneToOne(() => Address, (address) => address.user)
     address: Address;
 
     @OneToMany(() => SaleComments, (salesComments) => salesComments.user)
