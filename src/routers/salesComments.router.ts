@@ -13,12 +13,6 @@ salesComments.post(
     controllers.salesCommentsControllers.create
 );
 
-salesComments.get(
-    "/salesAd/:id",
-    middlewares.existsSalesAdId,
-    controllers.salesCommentsControllers.getAllSalesAdComments
-);
-
 salesComments.patch(
     "/:id",
     middlewares.ensureAuth,
