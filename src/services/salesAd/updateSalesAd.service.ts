@@ -21,7 +21,10 @@ const updateById = async (
         }
     }
 
-    await repositories.salesAdRepo.update({ id: salesAdId }, salesAd);
+    if (Object.keys(salesAd).length != 0) {
+        await repositories.salesAdRepo.update({ id: salesAdId }, salesAd);
+    }
+
     const updatedSales = await repositories.salesAdRepo.findOne({
         relations: {
             salesImages: true,
