@@ -34,7 +34,11 @@ const retrieveSalesByUserId = async (
         .leftJoinAndSelect("salesAd.salesImages", "salesImages")
         .addOrderBy("salesAd.created_at", "DESC");
 
-    const [sales, salesAdCount] = await queryBuilder.getManyAndCount();
+    let [sales, salesAdCount] = await queryBuilder.getManyAndCount();
+
+    sales = sales.map((saleAd) => {
+        return { ...saleAd, price: saleAd.price / 100 };
+    });
 
     const prevPageUrl: string | null =
         page <= 1
