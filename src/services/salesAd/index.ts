@@ -6,6 +6,7 @@ import deleteById from "./deleteSalesAd.service";
 import filter from "./filterSalesAd.service";
 import findExistentValues from "./findExistentValues.service";
 import retrieveSalesByUserId from "./retrieveSalesByUserId.service";
+import deleteSalesImage from "./deleteSalesImage.service";
 
 const salesAd = {
     create,
@@ -16,6 +17,7 @@ const salesAd = {
     filter,
     findExistentValues,
     retrieveSalesByUserId,
+    deleteSalesImage,
 };
 
 export default salesAd;
