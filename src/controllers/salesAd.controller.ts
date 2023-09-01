@@ -1,10 +1,8 @@
 import { Request, Response } from "express";
-
 import services from "../services";
 import {
     TSalesAdRequest,
     TSalesAdResponse,
-    TSalesAdUpdate,
     TSalesWithImages,
 } from "../interfaces/salesAd.interface";
 
@@ -55,7 +53,7 @@ const readById = async (req: Request, res: Response): Promise<Response> => {
 
 const updateById = async (req: Request, res: Response): Promise<Response> => {
     const salesAdId: string = req.params.id;
-    const salesAdData: TSalesAdUpdate = req.body;
+    const salesAdData: TSalesAdRequest = req.body;
 
     const newSalesAd: TSalesWithImages = await services.salesAd.updateById(
         salesAdId,
