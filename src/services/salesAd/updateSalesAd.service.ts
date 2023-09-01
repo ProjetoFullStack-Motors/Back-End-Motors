@@ -1,23 +1,35 @@
+import { SalesImages } from "../../entities/salesAd.entity";
 import {
-    TSalesAdUpdate,
+    TSalesAdRequest,
     TSalesWithImages,
 } from "../../interfaces/salesAd.interface";
 import repositories from "../../utils";
 
 const updateById = async (
     salesAdId: string,
-    salesAdData: TSalesAdUpdate
+    salesAdData: TSalesAdRequest
 ): Promise<TSalesWithImages> => {
     const { salesImages, ...salesAd } = salesAdData;
 
-    if (Array.isArray(salesImages)) {
-        for (const { id, imageUrl } of salesImages) {
-            await repositories.salesImageRepo.update(
-                { id: id },
-                {
-                    imageUrl: imageUrl,
-                }
-            );
+    if (salesImages) {
+        const sales = await repositories.salesAdRepo.findOne({
+            where: {
+                id: salesAdId,
+            },
+        });
+
+        await repositories.salesImageRepo
+            .createQueryBuilder()
+            .delete()
+            .from(SalesImages)
+            .where("salesAdId = :id", { id: salesAdId })
+            .execute();
+
+        for (const image of salesImages) {
+            const newImage = repositories.salesImageRepo.create(image);
+            newImage.salesAd = sales!;
+
+            await repositories.salesImageRepo.save(newImage);
         }
     }
 

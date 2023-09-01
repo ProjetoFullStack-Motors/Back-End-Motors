@@ -30,7 +30,7 @@ salesAd.post(
 );
 salesAd.get("/values", controllers.salesAd.findExistentValues);
 salesAd.get("/:id", middlewares.existsSalesAdId, controllers.salesAd.readById);
-salesAd.patch(
+salesAd.put(
     "/:id",
     middlewares.ensureAuth,
     middlewares.existsSalesAdId,
