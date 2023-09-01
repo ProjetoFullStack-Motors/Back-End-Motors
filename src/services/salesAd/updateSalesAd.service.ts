@@ -9,6 +9,13 @@ const updateById = async (
     salesAdId: string,
     salesAdData: TSalesAdRequest
 ): Promise<TSalesWithImages> => {
+    if (salesAdData.price) {
+        salesAdData = {
+            ...salesAdData,
+            price: salesAdData.price * 100,
+        };
+    }
+
     const { salesImages, ...salesAd } = salesAdData;
 
     if (salesImages) {

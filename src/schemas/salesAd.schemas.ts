@@ -48,7 +48,7 @@ const response = z.object({
     description: z.string(),
     status: z.boolean().default(true),
     created_at: z.string(),
-    salesImages: z.array(imagesRequestUpdate),
+    salesImages: z.array(imagesResponse),
     user: userResWithoutAddress,
     comments: z.array(salesCommentsSchema.commentsWithoutSalesAd).optional(),
 });

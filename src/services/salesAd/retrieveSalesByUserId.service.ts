@@ -37,6 +37,10 @@ const retrieveSalesByUserId = async (
     let [sales, salesAdCount] = await queryBuilder.getManyAndCount();
 
     sales = sales.map((saleAd) => {
+        saleAd.salesImages.sort((a, b) => {
+            return Number(a.created_at) - Number(b.created_at);
+        });
+
         return { ...saleAd, price: saleAd.price / 100 };
     });
 
