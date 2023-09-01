@@ -83,17 +83,6 @@ const retrieveSalesByUserId = async (
     return res.json(sales);
 };
 
-const deleteSalesImage = async (
-    request: Request,
-    response: Response
-): Promise<Response> => {
-    const imageId: string = request.params.id;
-
-    await services.salesAd.deleteSalesImage(imageId);
-
-    return response.status(204).send();
-};
-
 const salesAd = {
     create,
     readAll,
@@ -103,7 +92,6 @@ const salesAd = {
     filterReadAll,
     findExistentValues,
     retrieveSalesByUserId,
-    deleteSalesImage,
 };
 
 export default salesAd;

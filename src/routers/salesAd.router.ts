@@ -52,11 +52,4 @@ salesAd.get(
     controllers.salesAd.retrieveSalesByUserId
 );
 
-salesAd.delete(
-    "/image/:id",
-    middlewares.ensureAuth,
-    middlewares.ensureImageExists,
-    controllers.salesAd.deleteSalesImage
-);
-
 export default salesAd;
