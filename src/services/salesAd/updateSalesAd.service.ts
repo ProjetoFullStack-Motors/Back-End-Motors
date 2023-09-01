@@ -13,21 +13,29 @@ const updateById = async (
     if (Array.isArray(salesImages)) {
         for (const { id, imageUrl } of salesImages) {
             await repositories.salesImageRepo.update(
-                { id: id! },
+                { id: id },
                 {
-                    imageUrl: imageUrl!,
+                    imageUrl: imageUrl,
                 }
             );
         }
     }
 
-    await repositories.salesAdRepo.update({ id: salesAdId }, salesAd);
+    if (Object.keys(salesAd).length != 0) {
+        await repositories.salesAdRepo.update({ id: salesAdId }, salesAd);
+    }
+
     const updatedSales = await repositories.salesAdRepo.findOne({
         relations: {
             salesImages: true,
         },
         where: {
             id: salesAdId,
+        },
+        order: {
+            salesImages: {
+                created_at: "ASC",
+            },
         },
     });
     return updatedSales!;
