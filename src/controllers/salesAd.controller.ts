@@ -48,9 +48,7 @@ const findExistentValues = async (
 const readById = async (req: Request, res: Response): Promise<Response> => {
     const salesAdId = req.params.id;
 
-    const saleAd: TSalesAdResponse = await services.salesAd.readById(
-        salesAdId
-    );
+    const saleAd: TSalesAdResponse = await services.salesAd.readById(salesAdId);
 
     return res.status(200).json(saleAd);
 };
@@ -87,6 +85,17 @@ const retrieveSalesByUserId = async (
     return res.json(sales);
 };
 
+const deleteSalesImage = async (
+    request: Request,
+    response: Response
+): Promise<Response> => {
+    const imageId: string = request.params.id;
+
+    await services.salesAd.deleteSalesImage(imageId);
+
+    return response.status(204).send();
+};
+
 const salesAd = {
     create,
     readAll,
@@ -96,6 +105,7 @@ const salesAd = {
     filterReadAll,
     findExistentValues,
     retrieveSalesByUserId,
+    deleteSalesImage,
 };
 
 export default salesAd;
