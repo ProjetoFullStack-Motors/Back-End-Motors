@@ -1,33 +1,60 @@
+import { SalesImages } from "../../entities/salesAd.entity";
 import {
-    TSalesAdUpdate,
+    TSalesAdRequest,
     TSalesWithImages,
 } from "../../interfaces/salesAd.interface";
 import repositories from "../../utils";
 
 const updateById = async (
     salesAdId: string,
-    salesAdData: TSalesAdUpdate
+    salesAdData: TSalesAdRequest
 ): Promise<TSalesWithImages> => {
+    if (salesAdData.price) {
+        salesAdData = {
+            ...salesAdData,
+            price: salesAdData.price * 100,
+        };
+    }
+
     const { salesImages, ...salesAd } = salesAdData;
 
-    if (Array.isArray(salesImages)) {
-        for (const { id, imageUrl } of salesImages) {
-            await repositories.salesImageRepo.update(
-                { id: id! },
-                {
-                    imageUrl: imageUrl!,
-                }
-            );
+    if (salesImages) {
+        const sales = await repositories.salesAdRepo.findOne({
+            where: {
+                id: salesAdId,
+            },
+        });
+
+        await repositories.salesImageRepo
+            .createQueryBuilder()
+            .delete()
+            .from(SalesImages)
+            .where("salesAdId = :id", { id: salesAdId })
+            .execute();
+
+        for (const image of salesImages) {
+            const newImage = repositories.salesImageRepo.create(image);
+            newImage.salesAd = sales!;
+
+            await repositories.salesImageRepo.save(newImage);
         }
     }
 
-    await repositories.salesAdRepo.update({ id: salesAdId }, salesAd);
+    if (Object.keys(salesAd).length != 0) {
+        await repositories.salesAdRepo.update({ id: salesAdId }, salesAd);
+    }
+
     const updatedSales = await repositories.salesAdRepo.findOne({
         relations: {
             salesImages: true,
         },
         where: {
             id: salesAdId,
+        },
+        order: {
+            salesImages: {
+                created_at: "ASC",
+            },
         },
     });
     return updatedSales!;
