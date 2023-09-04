@@ -32,6 +32,7 @@ const retrieveSalesByUserId = async (
         .take(perPage)
         .skip((page - 1) * perPage)
         .leftJoinAndSelect("salesAd.salesImages", "salesImages")
+        .addOrderBy("salesAd.status", "DESC")
         .addOrderBy("salesAd.created_at", "DESC");
 
     let [sales, salesAdCount] = await queryBuilder.getManyAndCount();

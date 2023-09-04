@@ -27,6 +27,9 @@ const filter = async (
             salesImages: true,
             user: true,
         },
+        order: {
+            status: "DESC",
+        },
     };
 
     if (filterData) {
