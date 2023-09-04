@@ -18,6 +18,9 @@ const readAll = async (toListing: TListArgument): Promise<TPaginateSalesAd> => {
             user: true,
             salesImages: true,
         },
+        order: {
+            status: "DESC",
+        },
         ...objectToListing,
     };
 
