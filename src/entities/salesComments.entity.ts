@@ -8,12 +8,12 @@ class SaleComments extends BaseEntity {
     @Column({ type: "text" })
     comment: string;
 
-    @ManyToOne(() => SalesAd, (salesAd) => salesAd.comments)
-    salesAd: SalesAd;
-
-    @ManyToOne(() => User, (user) => user.comments, {
+    @ManyToOne(() => SalesAd, (salesAd) => salesAd.comments, {
         onDelete: "CASCADE",
     })
+    salesAd: SalesAd;
+
+    @ManyToOne(() => User, (user) => user.comments, { onDelete: "CASCADE" })
     user: User;
 }
 
